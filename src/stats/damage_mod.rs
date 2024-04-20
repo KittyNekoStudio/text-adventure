@@ -1,9 +1,10 @@
 #[derive(Debug)]
+/// Different types of damage
 pub enum DamageTypes {
-    fire,
-    ice,
-    acid,
-    arcane,
-    sharp,
-    blunt
+    Fire,
+    Ice,
+    Acid,
+    Arcane,
+    Sharp,
+    Blunt
 }

@@ -1,19 +1,16 @@
-use super::def::{Item, ItemEffect, ItemType};
+use super::def::{Item, ItemEffect};
 #[derive(Debug)]
+/// The basic potion
 pub struct Potion {
+    pub item_type: u8,
     pub potion: Item
 }
 
 impl Potion {
     pub fn new() -> Self {
         Self {
+            item_type: 2,
             potion: Item {
-                item_type: ItemType {
-                    held: false,
-                    wearable: false,
-                    consumable: true,
-                    throwable: false
-                },
                 item_effect: ItemEffect {
                     damage: false,
                     recover: true,
@@ -26,9 +23,11 @@ impl Potion {
     }
 }
 #[derive(Debug)]
+// TODO! learn how to reference other code in a doc comment
+/// A derivative of the potion struct that heals
 pub struct HealthPotion {
-    potion: Potion,
-    heal: u8
+    pub potion: Potion,
+    pub heal: u8
 }
 
 impl HealthPotion {

@@ -1,11 +1,6 @@
 #[derive(Debug)]
-pub struct ItemType {
-    pub held: bool,
-    pub wearable: bool,
-    pub consumable: bool,
-    pub throwable: bool
-}
-#[derive(Debug)]
+/// The different effects that items can have.
+/// Implenented as a bool value
 pub struct ItemEffect {
     pub damage: bool,
     pub recover: bool,
@@ -14,20 +9,14 @@ pub struct ItemEffect {
     pub defence: bool
 }
 #[derive(Debug)]
+/// The struct that defines the base item.
 pub struct Item {
-    pub item_type: ItemType,
     pub item_effect: ItemEffect
 }
 
 impl Item {
     pub fn new() -> Self {
         Self {
-            item_type: ItemType {
-                held: false,
-                wearable: false,
-                consumable: false,
-                throwable: false
-            },
             item_effect: ItemEffect {
                 damage: false,
                 recover: false,
@@ -38,21 +27,20 @@ impl Item {
         }
     }
 }
-
-pub fn check_item_field(item: Item, text: &str) -> (bool, u8) {
+/// Returns the item_type based on the argument
+pub fn check_item_type(item_type: u8) -> &'static str {
+    match item_type {
+        1 => "held",
+        2 => "consumable",
+        3 => "wearable",
+        4 => "throwable",
+        _ => "Item type is not an allowed number"
+    }
+}
+/// Checks if the item has any of the item effects
+// Returns a bool and u8 to as I want to cheack against wrongly types arguments
+pub fn check_item_effect(item: Item, text: &str) -> (bool, u8) {
     match text {
-        "held" => match item {
-            Item { item_type, .. } => (item_type.held, 1)
-        },
-        "consumable" => match item {
-            Item { item_type, .. } => (item_type.consumable, 1)
-        },
-        "wearable" => match item {
-            Item { item_type, .. } => (item_type.wearable, 1)
-        },
-        "throwable" => match item {
-            Item { item_type, .. } => (item_type.throwable, 1)
-        },
         "damage" => match item {
             Item { item_effect, .. } => (item_effect.damage, 1)
         },

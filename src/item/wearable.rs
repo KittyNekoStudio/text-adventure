@@ -1,19 +1,16 @@
-use super::def::{Item, ItemEffect, ItemType};
+use super::def::{Item, ItemEffect};
 #[derive(Debug)]
-pub struct Wearable {
-    pub wearable: Item,
+/// The basic clothes
+pub struct Clothes {
+    pub item_type: u8,
+    pub wearable: Item
 }
 // TODO! create a wearable for accessories
-impl Wearable {
+impl Clothes {
     pub fn new() -> Self {
         Self {
+            item_type: 3,
             wearable: Item {
-                item_type: ItemType {
-                    held: false,
-                    wearable: true,
-                    consumable: false,
-                    throwable: false
-                },
                 item_effect: ItemEffect {
                     damage: false,
                     recover: false,
@@ -26,15 +23,16 @@ impl Wearable {
     }
 }
 #[derive(Debug)]
+/// A derivative of the clothes struct
 pub struct LeatherArmor {
-    armor: Wearable,
-    defence: u8
+    pub armor: Clothes,
+    pub defence: u8
 }
 
 impl LeatherArmor {
     pub fn new() -> Self {
         Self {
-            armor: Wearable::new(),
+            armor: Clothes::new(),
             defence: 3
         }
     }
