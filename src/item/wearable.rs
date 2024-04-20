@@ -1,5 +1,5 @@
 use super::def::{Item, ItemEffect};
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 /// The basic clothes
 pub struct Clothes {
     pub item_type: u8,
@@ -22,7 +22,7 @@ impl Clothes {
         }
     }
 }
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 /// A derivative of the clothes struct
 pub struct LeatherArmor {
     pub armor: Clothes,

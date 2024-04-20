@@ -1,5 +1,5 @@
 use super::def::{Item, ItemEffect};
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 /// The basic potion
 pub struct Potion {
     pub item_type: u8,
@@ -22,18 +22,18 @@ impl Potion {
         }
     }
 }
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 // TODO! learn how to reference other code in a doc comment
 /// A derivative of the potion struct that heals
 pub struct HealthPotion {
-    pub potion: Potion,
+    pub h_potion: Potion,
     pub heal: u8
 }
 
 impl HealthPotion {
     pub fn new() -> Self {
         Self {
-            potion: Potion::new(),
+            h_potion: Potion::new(),
             heal: 10
         }
     }

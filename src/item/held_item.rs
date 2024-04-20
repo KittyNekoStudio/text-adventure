@@ -1,7 +1,7 @@
 use crate::stats::damage_mod::DamageTypes;
 
 use super::def::{Item, ItemEffect};
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 /// The basic weapon
 pub struct Weapon {
     pub item_type: u8,
@@ -24,7 +24,7 @@ impl Weapon {
         }
     }
 }
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 /// A derivative of the weapon struct
 pub struct Sword {
     pub sword: Weapon,

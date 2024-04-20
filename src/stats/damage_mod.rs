@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 /// Different types of damage
 pub enum DamageTypes {
     Fire,
