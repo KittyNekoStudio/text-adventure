@@ -12,44 +12,44 @@ impl PlayerCharacter {
             stats: (1, 50, 5, 5, 5)
         }
     }
-    pub fn update_level(mut self, operation: &str, num: u16) -> Self {
-        if operation == "+" {
-            self.stats.0 = self.stats.0 + num
-        } else if operation == "-" {
-            self.stats.0 = self.stats.0 - num
-        }
+    pub fn add_level(mut self, num: u16) -> Self {
+        self.stats.0 += num;
         self
     }
-    pub fn update_health(mut self, operation: &str, num: u16) -> Self {
-        if operation == "+" {
-            self.stats.1 += num
-        } else if operation == "-" {
-            self.stats.1 -= num
-        }
+    pub fn sub_level(mut self, num: u16) -> Self {
+        self.stats.0 -= num;
         self
     }
-    pub fn update_vit(mut self, operation: &str, num: u16) -> Self {
-        if operation == "+" {
-            self.stats.2 = self.stats.2 + num
-        } else if operation == "-" {
-            self.stats.2 = self.stats.2 - num
-        }
+    pub fn add_health(mut self, num: u16) -> Self {
+        self.stats.1 += num;
         self
     }
-    pub fn update_int(mut self, operation: &str, num: u16) -> Self {
-        if operation == "+" {
-            self.stats.3 = self.stats.3 + num
-        } else if operation == "-" {
-            self.stats.3 = self.stats.3 - num
-        }
+    pub fn sub_health(mut self, num: u16) -> Self {
+        self.stats.1 -= num;
         self
     }
-    pub fn update_speed(mut self, operation: &str, num: u16) -> Self {
-        if operation == "+" {
-            self.stats.4 = self.stats.4 + num
-        } else if operation == "-" {
-            self.stats.4 = self.stats.4 - num
-        }
+    pub fn add_vit(mut self, num: u16) -> Self {
+        self.stats.2 += num;
+        self
+    }
+    pub fn sub_vit(mut self, num: u16) -> Self {
+        self.stats.2 += num;
+        self
+    }
+    pub fn add_int(mut self, num: u16) -> Self {
+        self.stats.3 += num;
+        self
+    }
+    pub fn sub_int(mut self, num: u16) -> Self {
+        self.stats.3 -= num;
+        self
+    }
+    pub fn add_speed(mut self, num: u16) -> Self {
+        self.stats.4 += num;
+        self
+    }
+    pub fn sub_speed(mut self, num: u16) -> Self {
+        self.stats.4 -= num;
         self
     }
     pub fn get_level(self) -> u16 {
