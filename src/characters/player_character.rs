@@ -1,10 +1,9 @@
-use crate::stats::character_stats::{Health, Intelligence, Level, Speed, Vitality};
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 /// The basic character
 pub struct PlayerCharacter {
     // TODO! create a system able to index into a collection
     // based on the provided stat type 
-    pub stats: (Level, Health, Intelligence, Vitality, Speed)
+    pub stats: (u16, u16, u16, u16, u16)
 }
 
 impl PlayerCharacter {
