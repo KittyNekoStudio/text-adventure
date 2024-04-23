@@ -1,16 +1,33 @@
+use crate::item::def::AllItems;
+
 #[derive(Debug, Clone)]
 /// The basic character
-pub struct PlayerCharacter {
-    // TODO! create a system able to index into a collection
-    // based on the provided stat type 
-    pub stats: (u16, u16, u16, u16, u16)
+pub struct Entity {
+    pub stats: (u16, u16, u16, u16, u16),
+    pub inventory: Vec<AllItems>
 }
 
-impl PlayerCharacter {
+impl Entity {
     pub fn new() -> Self {
         Self {
-            stats: (1, 50, 5, 5, 5)
+            stats: (1, 50, 5, 5, 5),
+            inventory: vec![]
         }
+    }
+    pub fn get_level(self) -> u16 {
+        self.stats.0
+    }
+    pub fn get_health(self) -> u16 {
+        self.stats.1
+    }
+    pub fn get_vit(self) -> u16 {
+        self.stats.2
+    }
+    pub fn get_int(self) -> u16 {
+        self.stats.3
+    }
+    pub fn get_speed(self) -> u16 {
+        self.stats.4
     }
     pub fn add_level(mut self, num: u16) -> Self {
         self.stats.0 += num;
@@ -52,19 +69,5 @@ impl PlayerCharacter {
         self.stats.4 -= num;
         self
     }
-    pub fn get_level(self) -> u16 {
-        self.stats.0
-    }
-    pub fn get_health(self) -> u16 {
-        self.stats.1
-    }
-    pub fn get_vit(self) -> u16 {
-        self.stats.2
-    }
-    pub fn get_int(self) -> u16 {
-        self.stats.3
-    }
-    pub fn get_speed(self) -> u16 {
-        self.stats.4
-    }
+
 }

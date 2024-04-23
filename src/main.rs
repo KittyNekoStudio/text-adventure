@@ -1,7 +1,7 @@
 mod def;
 mod item;
 mod stats;
-mod characters;
+mod entitys;
 fn main() {
-        
+                   
 }

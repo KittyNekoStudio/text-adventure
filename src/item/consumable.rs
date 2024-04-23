@@ -1,28 +1,26 @@
-use super::def::{Item, ItemEffect};
-#[derive(Debug, Clone)]
+use super::def::ItemEffect;
+#[derive(Debug, Clone, Copy)]
 /// The basic potion
 pub struct Potion {
     pub item_type: u8,
-    pub potion: Item
+    pub item_effect: ItemEffect
 }
 
 impl Potion {
     pub fn new() -> Self {
         Self {
             item_type: 2,
-            potion: Item {
-                item_effect: ItemEffect {
-                    damage: false,
-                    recover: true,
-                    buff: false,
-                    debuff: false,
-                    defence: false
-                }
+            item_effect: ItemEffect {
+                damage: false,
+                recover: true,
+                buff: false,
+                debuff: false,
+                defence: false
             }    
         }
     }
 }
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy)]
 // TODO! learn how to reference other code in a doc comment
 /// A derivative of the potion struct that heals
 pub struct HealthPotion {

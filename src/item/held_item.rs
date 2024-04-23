@@ -1,30 +1,28 @@
 use crate::stats::damage_mod::DamageTypes;
 
-use super::def::{Item, ItemEffect};
-#[derive(Debug, Clone)]
+use super::def::ItemEffect;
+#[derive(Debug, Clone, Copy)]
 /// The basic weapon
 pub struct Weapon {
     pub item_type: u8,
-    pub weapon: Item,
+    pub item_effect: ItemEffect,
 }
 
 impl Weapon {
     pub fn new() -> Self {
         Self {
             item_type: 1,
-            weapon: Item {
-                item_effect: ItemEffect {
-                    damage: true,
-                    recover: false,
-                    buff: false,
-                    debuff: false,
-                    defence: false
-                }
+            item_effect: ItemEffect {
+                damage: true,
+                recover: false,
+                buff: false,
+                debuff: false,
+                defence: false
             }            
         }
     }
 }
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy)]
 /// A derivative of the weapon struct
 pub struct Sword {
     pub sword: Weapon,
