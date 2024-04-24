@@ -1,10 +1,4 @@
-use test::test;
-
-mod test;
-mod def;
-mod item;
-mod damage_types;
-mod entitys;
+use lib; 
 fn main() {
-    test();          
+    lib::test::test();
 }

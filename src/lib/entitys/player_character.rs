@@ -1,22 +1,27 @@
 use crate::{damage_types::damage_mod::MagicType, item::{consumable::HealthPotion, def::AllItems, held_item::Sword, wearable::LeatherArmor}};
 
 use super::entity::Entity;
-
+/// The struct for the player character.
 #[derive(Debug, Clone)]
 pub struct PlayerCharacter {
     pub entity: Entity,
+    pub first_name: String,
+    pub last_name: String,
     pub combat_magic: MagicType,
-    pub eye_color: String,
     pub hair_color: String,
+    pub eye_color: String
+    
 }
 
 impl PlayerCharacter {
     pub fn new() -> Self {
         PlayerCharacter {
             entity: Entity::new(),
+            first_name: String::from("Bob"),
+            last_name: String::from("Bob"),
             combat_magic: MagicType::Fire,
-            eye_color: String::from("Brown"),
-            hair_color: String::from("Brown")
+            hair_color: String::from("Brown"),
+            eye_color: String::from("Brown")
         }
     }
     // !TODO add a way to not need to update the variable with these methods
