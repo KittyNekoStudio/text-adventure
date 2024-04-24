@@ -1,4 +1,4 @@
-use crate::stats::damage_mod::DamageTypes;
+use crate::damage_types::damage_mod::WeaponType;
 
 use super::def::ItemEffect;
 #[derive(Debug, Clone, Copy)]
@@ -26,7 +26,7 @@ impl Weapon {
 /// A derivative of the weapon struct
 pub struct Sword {
     pub sword: Weapon,
-    pub damage_type: DamageTypes,
+    pub damage_type: WeaponType,
     pub damage: u8
 }
 
@@ -34,7 +34,7 @@ impl Sword {
     pub fn new() -> Self {
         Self {
             sword: Weapon::new(),
-            damage_type: DamageTypes::Sharp,
+            damage_type: WeaponType::Sharp,
             damage: 10
         }
     }

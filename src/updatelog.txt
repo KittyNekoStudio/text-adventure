@@ -1,0 +1,8 @@
+April 23 2024
+
+Created the updatelog to not need to use the commit summaries
+Added the player character file
+Added the create entitys file to store the code to create different entitys
+Added the basis of creating the player character
+Added the test file to not use the main file to run tests
+Changed the damage types to be magic damage and weapon damage
