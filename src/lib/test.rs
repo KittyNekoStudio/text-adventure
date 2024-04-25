@@ -1,10 +1,7 @@
-use crate::map::{map::new_map, movement::match_for_direction};
+use crate::gamestate::{def::GameState, default_sate::get_default_state};
 
 /// A function to test various code.
 pub fn test() {
-    let mut map = new_map();
-    let direction = match_for_direction();
-    map.push(direction);
-    map.push(match_for_direction());
-    println!("{:?}", map);
+    let mut gamestate = GameState::new();
+    get_default_state(&mut gamestate);
 }

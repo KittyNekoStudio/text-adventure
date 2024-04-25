@@ -1,0 +1,77 @@
+April 25 2024
+Version 0.0.1
+Added:
+ the method push_movement() GameState
+ it checks if the field movement is true before pushing to map
+
+ check_direction() checks if input is equal to a movement option
+ 
+ get_default_state() calls default_state() while it returns false
+
+ default_state() calls the regular state that the game will be in
+ 
+ print_entity()
+
+ check_entity_field() checks if intput is equal to a field of entity
+
+
+Changed:
+ the methods on entity to take a reference to self
+
+ Removed:
+ get_direction()
+-----------------------------------------------------------------------------------------
+April 24 2024
+Version 0.0.1
+Added:
+ the staff struct for a weapon for magic
+ 
+ magic damage to WeaponType
+
+ get_direction() calls match_for_direction() to print the scripted text
+
+ const cardinal directions
+
+ the GameState struct
+
+ the ability to block adding values to map on GameState
+
+Changed:
+the name of updatelog to changelog
+
+the look of the changelog
+
+Removed:
+ new_map() as has the ability to use ::new()
+-----------------------------------------------------------------------------------------
+April 23 2024(2)
+0.0.1
+Added:
+ the ability to choose the name of the character
+
+ the map, witch is a vector that stores all previous movements made
+
+Changed:
+ the variables in choose hair and eye colors to be the
+ result of matching recive_input()
+
+Moved:
+ all code into a lib folder
+
+-----------------------------------------------------------------------------------------
+
+April 23 2024
+Version 0.0.1
+Added:
+ the updatelog to not need to use the commit summaries
+
+ the player character file
+
+ the create entitys file to store the code to create different entitys
+
+ the basis of creating the player character
+
+ the test file to not use the main file to run tests
+
+Changed:
+ the damage types to be magic damage and weapon damage

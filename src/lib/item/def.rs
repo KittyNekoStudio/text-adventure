@@ -1,12 +1,13 @@
-use super::{consumable::HealthPotion, held_item::Sword, wearable::LeatherArmor};
+use super::{consumable::HealthPotion, held_item::{Staff, Sword}, wearable::LeatherArmor};
 
 #[derive(Debug, Clone, Copy)]
 pub enum AllItems {
     Sword(Sword),
     HealthPotion(HealthPotion),
-    LeatherArmor(LeatherArmor)
+    LeatherArmor(LeatherArmor),
+    Staff(Staff)
 }
-
+// TODO! add names to all individual items
 #[derive(Debug, Clone, Copy)]
 /// The different effects that items can have.
 /// Implenented as a bool value
@@ -23,7 +24,8 @@ pub fn check_item_type(item: AllItems) -> String {
     let matched_item = match &item {
         AllItems::HealthPotion(HealthPotion { h_potion, heal }) => h_potion.item_type,
         AllItems::Sword(Sword { sword, damage_type, damage }) => sword.item_type,
-        AllItems::LeatherArmor(LeatherArmor { armor, defence }) => armor.item_type
+        AllItems::LeatherArmor(LeatherArmor { armor, defence }) => armor.item_type,
+        AllItems::Staff(Staff { staff, damage_type, damage }) => staff.item_type
     };
     match matched_item {
         1 => "held".to_string(),
@@ -39,7 +41,8 @@ pub fn check_item_effect(item: AllItems, text: &str) -> (bool, u8) {
     let matched_item = match &item {
         AllItems::HealthPotion(HealthPotion { h_potion, heal }) => &h_potion.item_effect,
         AllItems::Sword(Sword { sword, damage_type, damage }) => &sword.item_effect,
-        AllItems::LeatherArmor(LeatherArmor { armor, defence }) => &armor.item_effect
+        AllItems::LeatherArmor(LeatherArmor { armor, defence }) => &armor.item_effect,
+        AllItems::Staff(Staff { staff, damage_type, damage }) => &staff.item_effect
     };
     match text {
         "damage" => match matched_item {

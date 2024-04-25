@@ -1,4 +1,4 @@
-use crate::damage_types::damage_mod::WeaponType;
+use crate::damage_types::damage_mod::{MagicType, WeaponType};
 
 use super::def::ItemEffect;
 #[derive(Debug, Clone, Copy)]
@@ -19,6 +19,23 @@ impl Weapon {
                 debuff: false,
                 defence: false
             }            
+        }
+    }
+}
+#[derive(Debug, Clone, Copy)]
+/// A derivative of the weapon struct
+pub struct Staff {
+    pub staff: Weapon,
+    pub damage_type: WeaponType,
+    pub damage: u8
+}
+
+impl Staff {
+    pub fn new() -> Self {
+        Self {
+            staff: Weapon::new(),
+            damage_type: WeaponType::Magic(MagicType::Fire),
+            damage: 3
         }
     }
 }

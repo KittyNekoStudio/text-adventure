@@ -4,3 +4,4 @@ mod item;
 mod damage_types;
 mod entitys;
 mod map;
+mod gamestate;

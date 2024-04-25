@@ -10,5 +10,6 @@ pub enum MagicType {
 /// Different types of weapons
 pub enum WeaponType {
     Sharp,
-    Blunt
+    Blunt,
+    Magic(MagicType)
 }
