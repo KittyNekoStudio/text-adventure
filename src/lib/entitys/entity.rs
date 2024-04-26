@@ -1,4 +1,6 @@
-use crate::item::def::AllItems;
+use std::fmt;
+
+use crate::item::def::{print_item, AllItems};
 
 #[derive(Debug, Clone)]
 /// The basic character
@@ -6,7 +8,6 @@ pub struct Entity {
     pub stats: (u16, u16, u16, u16, u16),
     pub inventory: Vec<AllItems>
 }
-
 impl Entity {
     pub fn new() -> Self {
         Self {
@@ -69,11 +70,14 @@ impl Entity {
         self.stats.4 -= num;
         self
     }
-    // TODO! make this look pretty
     pub fn print_entity(&self, num: usize) {
         match num {
-            1 => println!("{:#?}", self.stats),
-            2 => println!("{:#?}", self.inventory),
+            1 => println!("Level: {}, Health: {}, Vitality: {}, Intelligence: {}, Speed: {}",
+            self.stats.0, self.stats.1, self.stats.2, self.stats.3, self.stats.4),
+            2 => for item in &self.inventory {
+                print_item(*item);
+                println!("");
+            },
             _ => ()
         }
     }

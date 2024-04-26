@@ -1,3 +1,4 @@
+/// If check_entity_field() is true call this the get usable data.
 pub fn match_entity_field(input: &String) -> usize {
     match &input.to_lowercase() as &str {
         "stats" => 1,
@@ -5,7 +6,7 @@ pub fn match_entity_field(input: &String) -> usize {
         _ => 3
     }
 }
-
+/// Checks if which field you are looking for
 pub fn check_entity_field(input: &String) -> bool {
     let fields = ["stats", "inventory"];
     for i in fields {

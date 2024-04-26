@@ -1,7 +1,7 @@
 use crate::{def::recive_input, entitys::def::{check_entity_field, match_entity_field}, map::movement::{check_direction, match_for_direction}};
 
 use super::def::GameState;
-
+/// The default state that player will be in.
 fn default_state(mut gamestate: &mut GameState) -> bool {
     let input = recive_input();
     if check_direction(&input) {
@@ -15,7 +15,7 @@ fn default_state(mut gamestate: &mut GameState) -> bool {
     println!("Nothing matches with what you typed.");
     return false;
 }
-
+/// Calls default_state() if it returns false.
 pub fn get_default_state(mut gamestate: &mut GameState) {
     let mut default = default_state(gamestate);
     while !default {

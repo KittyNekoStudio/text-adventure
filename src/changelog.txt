@@ -1,3 +1,21 @@
+April 26 2024
+Version 0.0.1
+Added:
+ add_staff()
+
+ print_item() prints the information in a clean way 
+
+ get_item_lore() is what print_item() calls
+ it calls either item_name() or item_description()
+ that then call the the various functions of the item type
+
+ Changed:
+ PlayerCharacter methods to take a reference to self
+
+ print_entity() stats to look better
+
+ LeatherArmor to Robe
+-----------------------------------------------------------------------------------------
 April 25 2024
 Version 0.0.1
 Added:

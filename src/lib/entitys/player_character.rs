@@ -1,4 +1,4 @@
-use crate::{damage_types::damage_mod::MagicType, item::{consumable::HealthPotion, def::AllItems, held_item::Sword, wearable::LeatherArmor}};
+use crate::{damage_types::damage_mod::MagicType, item::{consumable::HealthPotion, def::AllItems, held_item::{Staff, Sword}, wearable::Robe}};
 
 use super::entity::Entity;
 /// The struct for the player character.
@@ -27,18 +27,20 @@ impl PlayerCharacter {
     // !TODO add a way to not need to update the variable with these methods
     // example 
     // player = player.add_sword(sword)
-    pub fn add_sword(mut self, item: Sword) -> Self {
+    pub fn add_staff(&mut self, item: Staff) -> &Self {
+        self.entity.inventory.push(AllItems::Staff(item));
+        self
+    }
+    pub fn add_sword(&mut self, item: Sword) -> &Self {
         self.entity.inventory.push(AllItems::Sword(item));
         self
     }
-    
-    pub fn add_health_potion(mut self, item: HealthPotion) -> Self {
+    pub fn add_health_potion(&mut self, item: HealthPotion) -> &Self {
         self.entity.inventory.push(AllItems::HealthPotion(item));
         self
     }
-
-    pub fn add_leather_armor(mut self, item: LeatherArmor) -> Self {
-        self.entity.inventory.push(AllItems::LeatherArmor(item));
+    pub fn add_robe(&mut self, item: Robe) -> &Self {
+        self.entity.inventory.push(AllItems::Robe(item));
         self
     }
 }

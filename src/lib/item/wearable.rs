@@ -22,14 +22,18 @@ impl Clothes {
 }
 #[derive(Debug, Clone, Copy)]
 /// A derivative of the clothes struct
-pub struct LeatherArmor {
+pub struct Robe {
+    pub name: usize,
+    pub description: usize,
     pub armor: Clothes,
     pub defence: u8
 }
 
-impl LeatherArmor {
+impl Robe {
     pub fn new() -> Self {
         Self {
+            name: 4,
+            description: 4,
             armor: Clothes::new(),
             defence: 3
         }

@@ -24,6 +24,8 @@ impl Potion {
 // TODO! learn how to reference other code in a doc comment
 /// A derivative of the potion struct that heals
 pub struct HealthPotion {
+    pub name: usize,
+    pub description: usize,
     pub h_potion: Potion,
     pub heal: u8
 }
@@ -31,6 +33,8 @@ pub struct HealthPotion {
 impl HealthPotion {
     pub fn new() -> Self {
         Self {
+            name: 2,
+            description: 2,
             h_potion: Potion::new(),
             heal: 10
         }

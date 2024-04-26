@@ -25,14 +25,17 @@ impl Weapon {
 #[derive(Debug, Clone, Copy)]
 /// A derivative of the weapon struct
 pub struct Staff {
+    pub name: usize,
+    pub description: usize,
     pub staff: Weapon,
     pub damage_type: WeaponType,
     pub damage: u8
 }
-
 impl Staff {
     pub fn new() -> Self {
         Self {
+            name: 1,
+            description: 1,
             staff: Weapon::new(),
             damage_type: WeaponType::Magic(MagicType::Fire),
             damage: 3
@@ -42,6 +45,8 @@ impl Staff {
 #[derive(Debug, Clone, Copy)]
 /// A derivative of the weapon struct
 pub struct Sword {
+    pub name: usize,
+    pub description: usize,
     pub sword: Weapon,
     pub damage_type: WeaponType,
     pub damage: u8
@@ -50,6 +55,8 @@ pub struct Sword {
 impl Sword {
     pub fn new() -> Self {
         Self {
+            name: 3,
+            description: 3,
             sword: Weapon::new(),
             damage_type: WeaponType::Sharp,
             damage: 10
