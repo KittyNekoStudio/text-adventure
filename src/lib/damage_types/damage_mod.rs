@@ -1,6 +1,4 @@
-use std::fmt;
-
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 /// Different types of magic
 pub enum MagicType {
     Fire,
@@ -9,7 +7,7 @@ pub enum MagicType {
     Arcane,
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy,PartialEq)]
 /// Different types of weapons
 pub enum WeaponType {
     Sharp,

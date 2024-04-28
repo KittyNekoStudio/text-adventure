@@ -1,4 +1,7 @@
-use lib; 
+use test::test::test;
+
+mod test;
+mod scene; 
 fn main() {
-    lib::test::test();
+    test();
 }

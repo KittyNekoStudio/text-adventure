@@ -1,7 +1,7 @@
-pub mod test;
-mod def;
-mod item;
-mod damage_types;
-mod entitys;
-mod map;
-mod gamestate;
+pub mod def;
+pub mod item;
+pub mod damage_types;
+pub mod entitys;
+pub mod history;
+pub mod gamestate;
+pub mod area;

@@ -1,3 +1,52 @@
+April 28 2024
+Version 0.0.1
+Added:
+ pickup_item() to GameState
+ it calls get_item() whitch calls choose_item()
+ this the ability to pickup items
+-----------------------------------------------------------------------------------------
+April 27 2024
+Version 0.0.1
+Added:
+ id field to item structs
+
+ get_desc_id() returns the items id
+
+ change_desc_id() to all item structs
+
+ scene folder
+ I plan to hold all the scripted scenes in it
+
+ area folder to lib
+ area has the Area struct that will contain the different areas
+ and what they hold
+
+ current_area, previous_area, and all_areas as fields to GameState
+ current_area stores the current area
+ previous_area will store the previous areas
+ all_areas hold all the different areas in the game
+
+ update_area to GameState
+ updates the area with new information
+
+ the ability to quit
+ typing quit makes default_state() return false
+Changed:
+ get_item_lore() to now take id as the last tuple value
+
+ input in default state to lowercase 
+
+ the movement
+ you will now move to a room when you type the rooms name
+ instead of going in four different directions
+
+ the name of map to history
+
+ get_default_state() to loop while default_state() returns true
+
+ Removed:
+ the cardinal const
+-----------------------------------------------------------------------------------------
 April 26 2024
 Version 0.0.1
 Added:
@@ -15,6 +64,9 @@ Added:
  print_entity() stats to look better
 
  LeatherArmor to Robe
+
+ Moved:
+ test into it's own folder
 -----------------------------------------------------------------------------------------
 April 25 2024
 Version 0.0.1
@@ -31,7 +83,6 @@ Added:
  print_entity()
 
  check_entity_field() checks if intput is equal to a field of entity
-
 
 Changed:
  the methods on entity to take a reference to self
@@ -67,7 +118,7 @@ April 23 2024(2)
 Added:
  the ability to choose the name of the character
 
- the map, witch is a vector that stores all previous movements made
+ the map, whitch is a vector that stores all previous movements made
 
 Changed:
  the variables in choose hair and eye colors to be the
@@ -75,7 +126,6 @@ Changed:
 
 Moved:
  all code into a lib folder
-
 -----------------------------------------------------------------------------------------
 
 April 23 2024

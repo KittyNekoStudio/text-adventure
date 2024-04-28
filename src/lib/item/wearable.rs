@@ -1,5 +1,5 @@
 use super::def::ItemEffect;
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 /// The basic clothes
 pub struct Clothes {
     pub item_type: u8,
@@ -20,13 +20,14 @@ impl Clothes {
         }
     }
 }
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 /// A derivative of the clothes struct
 pub struct Robe {
     pub name: usize,
     pub description: usize,
     pub armor: Clothes,
-    pub defence: u8
+    pub defence: u8,
+    pub desc_id: usize
 }
 
 impl Robe {
@@ -35,7 +36,12 @@ impl Robe {
             name: 4,
             description: 4,
             armor: Clothes::new(),
-            defence: 3
+            defence: 3,
+            desc_id: 1
         }
+    }
+    pub fn change_desc_id(&mut self, num: usize) -> Self {
+        self.desc_id = num;
+        *self
     }
 }

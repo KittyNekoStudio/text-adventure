@@ -29,6 +29,7 @@ fn item_name(index: (usize, usize)) -> &'static str {
 fn staff_name(index: usize) -> &'static str {
     match index {
         1 => "Basic Staff",
+        2 => "Strongest staff ever made",
         _ => "Non allowed index"
     }
 }
@@ -50,9 +51,17 @@ fn robe_name(index: usize) -> &'static str {
         _ => "Non allowed index"
     }
 }
+pub fn interactable_name(index: usize) -> &'static str {
+    match index {
+        1 => "Mirror",
+        2 => "Your Bed",
+        _ => "Non allowed index"
+    }
+}
 fn staff_descriptions(index: usize) -> &'static str {
     match index {
         1 => "A staff that can be found anywhere. Nothing special.",
+        2 => "How is it so strong",
         _ => "Non allowed index"
     }
 }
@@ -71,6 +80,13 @@ fn potion_descriptions(index: usize) -> &'static str {
 fn robe_descriptions(index: usize) -> &'static str {
     match index {
         1 => "As much use as a bath robe.",
+        _ => "Non allowed index"
+    }
+}
+pub fn interactable_desctiptions(index: usize) -> &'static str {
+    match index {
+        1 => "It refects your beautiful face.",
+        2 => "The place you slept in for the past 6 years. That changes today.",
         _ => "Non allowed index"
     }
 }

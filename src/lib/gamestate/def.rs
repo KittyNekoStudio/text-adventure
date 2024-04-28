@@ -1,13 +1,10 @@
-use crate::{entitys::{entity::Entity, player_character::PlayerCharacter}, map::map::Map};
-
-pub const NORTH: &str = "north";
-pub const EAST: &str = "east";
-pub const SOUTH: &str = "south";
-pub const WEST: &str= "west";
-pub const CARDINALS: [&str; 4] = [NORTH, EAST, SOUTH, WEST];
+use crate::{area::{def::Area, first_room::{Bathroom, FirstRoom}}, entitys::{entity::Entity, player_character::PlayerCharacter}, history::{history::History, movement::get_area}};
 #[derive(Debug, Clone)]
 pub struct GameState {
-    pub map: Map,
+    pub history: History,
+    pub current_area: Area,
+    pub previous_area: Area,
+    pub all_areas: [Area; 2],
     pub movement: bool,
     pub player: PlayerCharacter,
     pub all_entitys: Vec<Entity>
@@ -16,7 +13,11 @@ pub struct GameState {
 impl GameState {
     pub fn new() -> Self {
         Self {
-            map: Map::new(),
+            history: vec!["hi".to_string()],
+            current_area: FirstRoom::new().area,
+            // TODO! change this to a gloal variable
+            previous_area: Area::new(),
+            all_areas: [FirstRoom::new().area, Bathroom::new().area],
             movement: true,
             player: PlayerCharacter::new(),
             all_entitys: vec![]
@@ -30,10 +31,29 @@ impl GameState {
         self.movement = true;
         self
     }
-    pub fn push_movement(&mut self, direction: usize) -> &Self {
+    pub fn push_movement(&mut self, room: &String) -> &Self {
         if self.movement == true {
-            self.map.push(direction);
+            self.history.push(room.to_string());
         }
+        self
+    }
+    pub fn push_prev_area(&mut self) -> &Self {
+        self.previous_area = self.current_area.clone();
+        self
+    }
+    pub fn update_area(&mut self) -> &Self {
+        let mut rev = self.history.iter().rev();
+        let (_, previous_area) = (rev.next(), rev.next().expect("Previous area Err"));
+        self.all_areas[get_area(previous_area)] = 
+            self
+            .previous_area
+            .clone();
+        self
+    }
+    // TODO! fix the panic of when the vec runs out of items
+    // it panics when you type the item in again
+    pub fn pickup_item(&mut self, item: &String) -> &Self {
+        self.player.entity.inventory.push(self.current_area.room.get_item(item));
         self
     }
 }

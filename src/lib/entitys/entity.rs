@@ -1,8 +1,6 @@
-use std::fmt;
-
 use crate::item::def::{print_item, AllItems};
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 /// The basic character
 pub struct Entity {
     pub stats: (u16, u16, u16, u16, u16),

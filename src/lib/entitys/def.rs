@@ -6,7 +6,7 @@ pub fn match_entity_field(input: &String) -> usize {
         _ => 3
     }
 }
-/// Checks if which field you are looking for
+/// Checks which field you are looking for
 pub fn check_entity_field(input: &String) -> bool {
     let fields = ["stats", "inventory"];
     for i in fields {
