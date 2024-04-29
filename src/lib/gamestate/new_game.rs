@@ -1,9 +1,6 @@
-use crate::{area::first_room::FirstRoom, item::{held_item::Staff, wearable::Robe}};
-
-use super::def::GameState;
+use super::{def::GameState, default_state::get_default_state};
 /// Creates start of the game.
-pub fn new_game() -> GameState {
+pub fn new_game() {
     let mut gamestate = GameState::new();
-    gamestate.player.add_robe(Robe::new());
-    return gamestate;
+    get_default_state(&mut gamestate)
 }

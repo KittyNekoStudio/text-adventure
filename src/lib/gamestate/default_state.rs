@@ -1,30 +1,35 @@
-use crate::{area::first_room::check_item, def::recive_input, entitys::def::{check_entity_field, match_entity_field}, history::movement::{check_room, move_to_room}, item::{def::print_interactable, intercatable_items::check_int_item_field}};
+use crate::{def::recive_input, entitys::def::{check_entity_field, match_entity_field}, history::movement::{check_room, move_to_room}, item::item_interaction::item_interaction};
 
 use super::def::GameState;
 /// The default state that player will be in.
 fn default_state(gamestate: &mut GameState) -> bool {
     let input = recive_input().to_lowercase();
-    
+    let interaction = item_interaction(&input, gamestate);
     if check_room(&input, &gamestate.current_area) {
         gamestate.push_movement(&input);
         move_to_room(gamestate);
-        println!("{:?}", gamestate.current_area);
-        println!("{:?}", gamestate.player.entity.inventory);
         gamestate.update_area();
+        println!("{:#?}", gamestate.current_area);
         return true;
     } else if check_entity_field(&input) {
         gamestate.player.entity.print_entity(match_entity_field(&input));
         return true;
-    } else if check_int_item_field(&input, gamestate.current_area.room.clone()) {
-        print_interactable(gamestate.current_area.room.interactable_items[0].desc_id);
-        return true;
-    } else if check_item(&input) {
-        gamestate.pickup_item(&input);
+    } else if interaction == 1 {
+        if gamestate.current_area.room.collectable_item.len() == 0 {
+            println!("Nothing matches with what you typed.");
+            return true;
+        }
+        gamestate.pickup_item(gamestate.get_collect_index(&input));
+        if !gamestate.store {
+            println!("Nothing matches with what you typed.");
+            return true;
+        }
         return true;
     }
     if input == String::from("quit") {
         return false;
     } else {
+        if interaction == 0 {return true;}
         println!("Nothing matches with what you typed.");
         return true;
     }

@@ -1,3 +1,28 @@
+April 29 2024
+Added:
+ get_collect_index() to GameState
+ same function as get_inter_index()
+ store field to GameState
+ if store false it cannot push to inventory
+
+ Some comments
+-----------------------------------------------------------------------------------------
+April 28 2024(2)
+Added:
+ item_interactions file
+ item_interaction() goes through all the interactions
+ the player can have with an item in a room
+
+ get_inter_index() to GameState
+ it calls get_inter_index() on room
+ and returns the index at that an interactable item is at
+ 
+ Changed:
+ Room interactable_items field to hold the tuple (String, Interactable)
+
+ Removed:
+ interactable_items
+-----------------------------------------------------------------------------------------
 April 28 2024
 Version 0.0.1
 Added:

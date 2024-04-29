@@ -1,7 +1,6 @@
 use crate::item::descriptions::{get_item_lore, interactable_desctiptions};
 
 use super::{consumable::HealthPotion, descriptions::interactable_name, held_item::{Staff, Sword}, wearable::Robe};
-
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum AllItems {
     Sword(Sword),

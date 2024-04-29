@@ -2,7 +2,7 @@ use crate::{damage_types::damage_mod::MagicType, item::{consumable::HealthPotion
 
 use super::entity::Entity;
 /// The struct for the player character.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct PlayerCharacter {
     pub entity: Entity,
     pub first_name: String,

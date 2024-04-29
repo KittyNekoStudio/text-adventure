@@ -1,7 +1,5 @@
-use test::test::test;
-
 mod test;
 mod scene; 
 fn main() {
-    test();
+    lib::gamestate::new_game::new_game();
 }

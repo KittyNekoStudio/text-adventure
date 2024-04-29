@@ -35,7 +35,7 @@ pub fn move_to_room(gamestate: &mut GameState) -> &GameState {
     }
     return gamestate;
 }
-
+/// Returns a number corresponding to an areas name.
 pub fn get_area(area_type: &String) -> usize {
     match area_type.as_str() {
         "room" => 0,

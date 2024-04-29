@@ -1,4 +1,4 @@
-use crate::item::{def::AllItems, held_item::Staff, interactable::Interactable};
+use crate::item::{def::AllItems, held_item::Staff, interactable::Interactable, wearable::Robe};
 
 use super::def::{Area, Room};
 #[derive(Debug, Clone, PartialEq)]
@@ -14,9 +14,8 @@ impl FirstRoom {
                 area: Area {
                 room: Room {
                 entitys: vec![],
-                collectable_item: vec![AllItems::Staff(Staff::new())],
-                interactable_items: vec![Interactable::new().change_desc_id(2)],
-                interactable_item_name: vec![String::from("bed")],
+                collectable_item: vec![(String::from("staff"), AllItems::Staff(Staff::new()))],
+                interactable_items: vec![(String::from("bed"), Interactable::new().change_desc_id(2))],
                 main_area_name: String::from("hallway"),
                 sub_area_names: vec![String::from("bathroom")],
                 id: 1
@@ -36,31 +35,13 @@ impl Bathroom {
                 area: Area {
                 room: Room {
                 entitys: vec![],
-                collectable_item: vec![],
-                interactable_items: vec![Interactable::new()],
-                interactable_item_name: vec![String::from("mirror")],
+                collectable_item: vec![(String::from("robe"), AllItems::Robe(Robe::new()))],
+                interactable_items: vec![(String::from("mirror"), Interactable::new())],
                 main_area_name: String::from("room"),
                 sub_area_names: vec![],
                 id: 2
                 }
             }
         }
-    }
-}
-
-pub fn check_item(item: &String) -> bool {
-    let fields = ["staff"];
-    for i in fields {
-        if item == i {
-            return true;
-        }
-    }
-    return false;
-}
-
-pub fn choose_item(item: &String) -> usize {
-    match item as &str {
-        "staff" => 0,
-        _ => 10
     }
 }
