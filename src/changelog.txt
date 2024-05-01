@@ -1,3 +1,7 @@
+May 1 2024
+Added:
+the start of changing how items work
+-----------------------------------------------------------------------------------------
 April 29 2024
 Added:
  get_collect_index() to GameState

@@ -1,17 +1,17 @@
 use crate::{area::{def::Area, first_room::{Bathroom, FirstRoom}}, entitys::{entity::Entity, player_character::PlayerCharacter}, history::{history::History, movement::get_area}};
 #[derive(Debug, Clone, PartialEq)]
-pub struct GameState {
+pub struct GameState<'a> {
     pub history: History,
-    pub current_area: Area,
-    pub previous_area: Area,
-    pub all_areas: [Area; 2],
+    pub current_area: Area<'a>,
+    pub previous_area: Area<'a>,
+    pub all_areas: [Area<'a>; 2],
     pub movement: bool,
     pub store: bool,
-    pub player: PlayerCharacter,
-    pub all_entitys: Vec<Entity>
+    pub player: PlayerCharacter<'a>,
+    pub all_entitys: Vec<Entity<'a>>
 }
 
-impl GameState {
+impl<'a> GameState<'a> {
     pub fn new() -> Self {
         Self {
             history: vec!["hi".to_string()],

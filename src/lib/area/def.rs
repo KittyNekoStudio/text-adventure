@@ -2,11 +2,11 @@ use crate::{entitys::entity::Entity, item::{def::AllItems, interactable::Interac
 
 /// A struct that makes all rooms one type.
 #[derive(Debug, Clone, PartialEq)]
-pub struct Area {
-    pub room: Room
+pub struct Area<'a> {
+    pub room: Room<'a>
 }
 
-impl Area {
+impl<'a> Area<'a> {
     pub fn new() -> Self {
         Self {
             room: Room::new()
@@ -15,16 +15,16 @@ impl Area {
 }
 /// A struct that holds the value of the room.
 #[derive(Debug, Clone, PartialEq)]
-pub struct Room {
-    pub entitys: Vec<Entity>,
-    pub collectable_item: Vec<(String, AllItems)>,
-    pub interactable_items: Vec<(String, Interactable)>,
+pub struct Room<'a> {
+    pub entitys: Vec<Entity<'a>>,
+    pub collectable_item: Vec<(String, AllItems<'a>)>,
+    pub interactable_items: Vec<(String, AllItems<'a>)>,
     pub main_area_name: String,
     pub sub_area_names: Vec<String>,
     pub id: usize
 }
 
-impl Room {
+impl<'a> Room<'a> {
     pub fn new() -> Self {
         Self {
             entitys: vec![],

@@ -2,7 +2,7 @@ use crate::def::recive_input;
 
 use super::player_character::PlayerCharacter;
 /// A function that creates a character and allows modification of some values.
-pub fn create_player() -> PlayerCharacter {
+pub fn create_player() -> PlayerCharacter<'static> {
     let mut player = PlayerCharacter::new();
     let first_name = recive_input();
     let last_name = recive_input();

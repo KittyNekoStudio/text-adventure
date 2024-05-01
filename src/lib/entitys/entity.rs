@@ -2,11 +2,11 @@ use crate::item::def::{print_item, AllItems};
 
 #[derive(Debug, Clone, PartialEq)]
 /// The basic character
-pub struct Entity {
+pub struct Entity<'a> {
     pub stats: (u16, u16, u16, u16, u16),
-    pub inventory: Vec<AllItems>
+    pub inventory: Vec<AllItems<'a>>
 }
-impl Entity {
+impl<'a> Entity<'a> {
     pub fn new() -> Self {
         Self {
             stats: (1, 50, 5, 5, 5),

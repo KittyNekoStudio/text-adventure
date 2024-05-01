@@ -1,10 +1,17 @@
-use super::def::ItemEffect;
+use super::def::{ItemEffect, WearableItem};
 #[derive(Debug, Clone, Copy, PartialEq)]
 /// The basic clothes
 pub struct Clothes {
     pub item_type: u8,
     pub item_effect: ItemEffect
 }
+
+pub const ROBE: WearableItem = WearableItem {
+    defence: 3,
+    name: "Basic Mage Robe",
+    description: "As much use as a bath robe."
+};
+
 // TODO! create a wearable for accessories
 impl Clothes {
     pub fn new() -> Self {

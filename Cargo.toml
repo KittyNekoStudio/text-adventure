@@ -13,4 +13,9 @@ path = "src/main.rs"
 name = "lib"
 path = "src/lib/lib.rs"
 [dependencies]
-colored = "2"
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3

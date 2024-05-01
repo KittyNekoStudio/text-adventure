@@ -12,7 +12,7 @@ pub fn check_room(input: &String, area: &Area) -> bool {
     return false;
 }
 /// Moves to the provided room.
-pub fn move_to_room(gamestate: &mut GameState) -> &GameState {
+pub fn move_to_room<'a>(gamestate: &mut GameState) -> &'a GameState<'a> {
     gamestate.push_prev_area();
     if gamestate.history.last() == Some(&gamestate.current_area.room.main_area_name) {
         gamestate.current_area = gamestate.all_areas[get_area

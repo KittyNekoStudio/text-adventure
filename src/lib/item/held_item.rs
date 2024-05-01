@@ -1,12 +1,19 @@
 use crate::damage_types::damage_mod::{MagicType, WeaponType};
 
-use super::def::ItemEffect;
+use super::def::{HeldItem, ItemEffect};
 #[derive(Debug, Clone, Copy, PartialEq)]
 /// The basic weapon
 pub struct Weapon {
     pub item_type: u8,
     pub item_effect: ItemEffect,
 }
+
+pub const STAFF: HeldItem = HeldItem {
+    weapon_type: WeaponType::Magic(MagicType::Fire),
+    damage: 3,
+    name: "Basic Staff",
+    description: "A staff that can be found anywhere. Nothing special."
+};
 
 impl Weapon {
     pub fn new() -> Self {

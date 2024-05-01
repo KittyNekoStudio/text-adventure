@@ -1,10 +1,17 @@
-use super::def::ItemEffect;
+use super::def::{ConsumableItem, ItemEffect};
 #[derive(Debug, Clone, Copy, PartialEq)]
 /// The basic potion
 pub struct Potion {
     pub item_type: u8,
     pub item_effect: ItemEffect
 }
+
+
+pub const HEALTHPOTION: ConsumableItem = ConsumableItem {
+    recover: 10,
+    name: "Basic Health Potion",
+    description: "The cheapest of healing potions."
+};
 
 impl Potion {
     pub fn new() -> Self {
