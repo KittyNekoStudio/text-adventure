@@ -8,8 +8,10 @@ fn default_state(gamestate: &mut GameState) -> bool {
     if check_room(&input, &gamestate.current_area) {
         gamestate.push_movement(&input);
         move_to_room(gamestate);
+        gamestate.add_entered();
         gamestate.print_room();
         gamestate.update_area();
+        println!("{:#?}", gamestate.current_area);
         return true;
     } else if check_entity_field(&input) {
         gamestate.player.entity.print_entity(match_entity_field(&input));

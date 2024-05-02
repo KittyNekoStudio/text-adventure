@@ -93,5 +93,10 @@ impl GameState {
         println!("{}", get_room_lore(self.current_area.room.lore, 0));
         println!("{}", get_room_lore(self.current_area.room.lore, 1));
     }
+    /// Adds to time entered room
+    pub fn add_entered(&mut self) -> &Self {
+        self.current_area.room.times_entered += 1;
+        self
+    }
 }
 

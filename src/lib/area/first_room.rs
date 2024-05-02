@@ -19,7 +19,8 @@ impl FirstRoom {
                 main_area_name: String::from("hallway"),
                 sub_area_names: vec![String::from("bathroom")],
                 id: 1,
-                lore: 0
+                lore: 0,
+                times_entered: 0
                 }
             }
         }
@@ -41,7 +42,8 @@ impl Bathroom {
                 main_area_name: String::from("bedroom"),
                 sub_area_names: vec![],
                 id: 2,
-                lore: 1
+                lore: 1,
+                times_entered: 0
                 }
             }
         }

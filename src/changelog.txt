@@ -1,3 +1,10 @@
+May 2 2024
+Added:
+ a counter to Room
+
+ add_entered() to GameState
+ plus 1 when player enters a room
+-----------------------------------------------------------------------------------------
 May 1 2024(2)
 Added:
  the first scene

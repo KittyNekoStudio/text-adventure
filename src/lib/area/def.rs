@@ -22,7 +22,8 @@ pub struct Room {
     pub main_area_name: String,
     pub sub_area_names: Vec<String>,
     pub id: usize,
-    pub lore: usize
+    pub lore: usize,
+    pub times_entered: usize
 }
 
 impl Room {
@@ -34,7 +35,8 @@ impl Room {
             main_area_name: String::from(""),
             sub_area_names: vec![],
             id: 0,
-            lore: 0
+            lore: 0,
+            times_entered: 0
         }
     }
     /// Gets the index to the interactable item.
