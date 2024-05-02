@@ -1,28 +1,10 @@
 use super::def::InteractableItem;
 
-#[derive(Debug, Clone, Copy, PartialEq)]
-pub struct Interactable {
-    pub desc_id: usize
-}
-
+/// The mirror.
 pub const MIRROR: InteractableItem = InteractableItem {
-    name: "Mirror",
-    description: "It refects your beautiful face."
+    lore: 4,
 };
-
+/// Bed in players room.
 pub const BED: InteractableItem = InteractableItem {
-    name: "Your Bed",
-    description: "The place you slept in for the past 6 years. That changes today."
+    lore: 3,
 };
-
-impl Interactable {
-    pub fn new() -> Self {
-        Self {
-            desc_id: 1
-        }
-    }
-    pub fn change_desc_id(&mut self, num: usize) -> Self {
-        self.desc_id = num;
-        *self
-    }
-}

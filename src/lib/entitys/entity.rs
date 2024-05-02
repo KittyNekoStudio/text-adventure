@@ -1,12 +1,12 @@
-use crate::item::def::{print_item, AllItems};
+use crate::item::def::{print_collectable, CollectableItem};
 
 #[derive(Debug, Clone, PartialEq)]
 /// The basic character
-pub struct Entity<'a> {
+pub struct Entity {
     pub stats: (u16, u16, u16, u16, u16),
-    pub inventory: Vec<AllItems<'a>>
+    pub inventory: Vec<CollectableItem>
 }
-impl<'a> Entity<'a> {
+impl Entity {
     pub fn new() -> Self {
         Self {
             stats: (1, 50, 5, 5, 5),
@@ -73,7 +73,7 @@ impl<'a> Entity<'a> {
             1 => println!("Level: {}, Health: {}, Vitality: {}, Intelligence: {}, Speed: {}",
             self.stats.0, self.stats.1, self.stats.2, self.stats.3, self.stats.4),
             2 => for item in &self.inventory {
-                print_item(*item);
+                print_collectable(*item);
                 println!("");
             },
             _ => ()

@@ -1,105 +1,50 @@
-use crate::{damage_types::damage_mod::WeaponType, item::descriptions::{get_item_lore, interactable_desctiptions}};
+use crate::{damage_types::damage_mod::WeaponType, item::descriptions::get_item_lore};
 
-use super::{consumable::{HealthPotion, HEALTHPOTION}, descriptions::interactable_name, held_item::{Staff, Sword, STAFF}, interactable::{self, BED, MIRROR}, wearable::{Robe, ROBE}};
-#[derive(Debug, Clone, Copy, PartialEq)]
-pub enum AllItems<'a> {
-    HeldItem(HeldItem<'a>),
-    ConsumableItem(ConsumableItem<'a>),
-    WearableItem(WearableItem<'a>),
-    InteractableItem(InteractableItem<'a>)
-}
+use super::{consumable::HEALTHPOTION, held_item::STAFF, interactable::{BED, MIRROR}, wearable::ROBE};
+/// Every collectable item in the game.
+pub const EVERYCOLITEM: [CollectableItem; 3] = [
+    STAFF, HEALTHPOTION, ROBE
+];
+/// Every interactable item in the game.
+pub const EVERYINTITEM: [InteractableItem; 2] = [
+    BED, MIRROR
+];
 
-/* pub const EVERYITEM: [Vec<AllItems>; 4] = [
-    vec![AllItems::HeldItem(STAFF)],
-    vec![AllItems::ConsumableItem(HEALTHPOTION)],
-    vec![AllItems::WearableItem(ROBE)],
-    vec![AllItems::InteractableItem(MIRROR), AllItems::InteractableItem(BED)]
-    ];
-*/
+/// The struct that defines Collectable items.
 #[derive(Debug, PartialEq, Clone, Copy)]
-pub struct HeldItem<'a> {
-    pub weapon_type: WeaponType,
-    pub damage: u8,
-    pub name: &'a str,
-    pub description: &'a str
+pub struct CollectableItem {
+    pub item_type: ItemType,
+    pub value: i32,
+    pub lore: usize
 }
-
+/// The struct that defines Interactable items.
 #[derive(Debug, PartialEq, Clone, Copy)]
-pub struct ConsumableItem<'a> {
-    pub recover: u8,
-    pub name: &'a str,
-    pub description: &'a str
+pub struct InteractableItem {
+    pub lore: usize
 }
-
+/// An enum that defines the item type of a Collectable item.
 #[derive(Debug, PartialEq, Clone, Copy)]
-pub struct WearableItem<'a> {
-    pub defence: u8,
-    pub name: &'a str,
-    pub description: &'a str
+pub enum ItemType {
+    Weapon(WeaponType),
+    Consumable,
+    Wearable
 }
 
-#[derive(Debug, PartialEq, Clone, Copy)]
-pub struct InteractableItem<'a> {
-    pub name: &'a str,
-    pub description: &'a str
+/// Prints Interactable item.
+pub fn print_interactable(item: InteractableItem) {
+    println!("{}", get_item_lore(item.lore, 0));
+    println!("{}", get_item_lore(item.lore, 1));
 }
 
-// TODO! add names to all individual items
-#[derive(Debug, Clone, Copy, PartialEq)]
-/// The different effects that items can have.
-/// Implenented as a bool value
-pub struct ItemEffect {
-    pub damage: bool,
-    pub recover: bool,
-    pub buff: bool,
-    pub debuff: bool,
-    pub defence: bool
-}
-/// Prints the item.
-pub fn print_item(item: AllItems) {
-    match item {
-        AllItems::HeldItem(_) => print_held(item),
-        AllItems::ConsumableItem(_) => print_consumable(item),
-        AllItems::WearableItem(_) => print_wearable(item),
-        AllItems::InteractableItem(_) => print_interactable(item)
+/// Prints Collectable item.
+pub fn print_collectable(item: CollectableItem) {
+    println!("{}", get_item_lore(item.lore, 0));
+    println!("{}", get_item_lore(item.lore, 1));
+    if item.item_type == ItemType::Consumable {
+        println!("recover {} health.", item.value);
+    } else if item.item_type == ItemType::Wearable {
+        println!("{} defence.", item.value);
+    } else {
+        println!("{} damage.", item.value);
     }
-}
-
-/// Prints interactable item.
-pub fn print_interactable(item: AllItems) {
-    let interactable = match item {
-        AllItems::InteractableItem(item) => item,
-        _=> todo!()
-    };
-    println!("{}", interactable.name);
-    println!("{}", interactable.description);
-}
-fn print_held(item: AllItems) {
-    let held = match item {
-        AllItems::HeldItem(item) => item,
-        _ => todo!()
-    };
-    println!("{}", held.name);
-    println!("{}", held.description);
-    println!("{} damage", held.damage);
-}
-fn print_consumable(item: AllItems) {
-    let consumable = match item {
-        AllItems::ConsumableItem(item) => item,
-        _ => todo!()
-    };
-    // TODO! find a way to get a value to get item lore
-    // hard coding the third value is not useful
-    println!("{}", consumable.name);
-    println!("{}", consumable.description);
-    println!("{} health", consumable.recover);
-}
-fn print_wearable(item: AllItems) {
-    let wearable = match item {
-        AllItems::WearableItem(item) => item,
-        _ => todo!()
-    };
-    println!("{}", wearable.name);
-    println!("{}", wearable.description);
-    println!("{} defence", wearable.defence);
 }

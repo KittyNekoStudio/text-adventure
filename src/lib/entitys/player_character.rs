@@ -1,10 +1,10 @@
-use crate::{damage_types::damage_mod::MagicType, item::{consumable::HealthPotion, def::{AllItems, ConsumableItem, HeldItem, WearableItem}, held_item::{Staff, Sword}, wearable::Robe}};
+use crate::{damage_types::damage_mod::MagicType, item::def::CollectableItem};
 
 use super::entity::Entity;
 /// The struct for the player character.
 #[derive(Debug, Clone, PartialEq)]
-pub struct PlayerCharacter<'a> {
-    pub entity: Entity<'a>,
+pub struct PlayerCharacter {
+    pub entity: Entity,
     pub first_name: String,
     pub last_name: String,
     pub combat_magic: MagicType,
@@ -13,7 +13,7 @@ pub struct PlayerCharacter<'a> {
     
 }
 
-impl<'a> PlayerCharacter<'a> {
+impl PlayerCharacter {
     pub fn new() -> Self {
         PlayerCharacter {
             entity: Entity::new(),
@@ -27,16 +27,8 @@ impl<'a> PlayerCharacter<'a> {
     // !TODO add a way to not need to update the variable with these methods
     // example 
     // player = player.add_sword(sword)
-    pub fn add_held(&mut self, item: HeldItem) -> &Self {
-        self.entity.inventory.push(AllItems::HeldItem(item));
-        self
-    }
-    pub fn add_consumable(&mut self, item: ConsumableItem) -> &Self {
-        self.entity.inventory.push(AllItems::ConsumableItem(item));
-        self
-    }
-    pub fn add_wearable(&mut self, item: WearableItem) -> &Self {
-        self.entity.inventory.push(AllItems::WearableItem(item));
+    pub fn add_item(&mut self, item: CollectableItem) -> &Self {
+        self.entity.inventory.push(item);
         self
     }
 }

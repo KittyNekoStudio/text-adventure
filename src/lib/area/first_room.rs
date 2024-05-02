@@ -1,45 +1,47 @@
-use crate::item::{def::AllItems, held_item::{Staff, STAFF}, interactable::{Interactable, BED, MIRROR}, wearable::{Robe, ROBE}};
+use crate::item::def::{EVERYCOLITEM, EVERYINTITEM};
 
 use super::def::{Area, Room};
 #[derive(Debug, Clone, PartialEq)]
-pub struct FirstRoom<'a> {
-    pub area: Area<'a>
+pub struct FirstRoom {
+    pub area: Area
 
 }
 
-impl<'a> FirstRoom<'a> {
+impl FirstRoom {
     pub fn new() -> Self {
     // TODO! create a way to move this into a function
             Self {
                 area: Area {
                 room: Room {
                 entitys: vec![],
-                collectable_item: vec![(String::from("staff"), AllItems::HeldItem(STAFF))],
-                interactable_items: vec![(String::from("bed"), AllItems::InteractableItem(BED))],
+                collectable_item: vec![(String::from("staff"), EVERYCOLITEM[0])],
+                interactable_items: vec![(String::from("bed"), EVERYINTITEM[0])],
                 main_area_name: String::from("hallway"),
                 sub_area_names: vec![String::from("bathroom")],
-                id: 1
+                id: 1,
+                lore: 0
                 }
             }
         }
     }
 }
 #[derive(Debug, Clone, PartialEq)]
-pub struct Bathroom<'a> {
-    pub area: Area<'a>
+pub struct Bathroom {
+    pub area: Area
 }
 
-impl<'a> Bathroom<'a> {
+impl Bathroom {
     pub fn new() -> Self {
             Self {
                 area: Area {
                 room: Room {
                 entitys: vec![],
-                collectable_item: vec![(String::from("robe"), AllItems::WearableItem(ROBE))],
-                interactable_items: vec![(String::from("mirror"), AllItems::InteractableItem(MIRROR))],
-                main_area_name: String::from("room"),
+                collectable_item: vec![(String::from("robe"), EVERYCOLITEM[2])],
+                interactable_items: vec![(String::from("mirror"), EVERYINTITEM[1])],
+                main_area_name: String::from("bedroom"),
                 sub_area_names: vec![],
-                id: 2
+                id: 2,
+                lore: 1
                 }
             }
         }

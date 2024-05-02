@@ -1,21 +1,21 @@
-use crate::{area::{def::Area, first_room::{Bathroom, FirstRoom}}, entitys::{entity::Entity, player_character::PlayerCharacter}, history::{history::History, movement::get_area}};
+use crate::{area::{def::Area, first_room::{Bathroom, FirstRoom}}, entitys::{entity::Entity, player_character::PlayerCharacter}, history::{history::History, movement::get_area}, item::descriptions::get_room_lore};
 #[derive(Debug, Clone, PartialEq)]
-pub struct GameState<'a> {
+pub struct GameState {
     pub history: History,
-    pub current_area: Area<'a>,
-    pub previous_area: Area<'a>,
-    pub all_areas: [Area<'a>; 2],
+    pub current_area: Area,
+    pub previous_area: Area,
+    pub all_areas: [Area; 2],
     pub movement: bool,
     pub store: bool,
-    pub player: PlayerCharacter<'a>,
-    pub all_entitys: Vec<Entity<'a>>
+    pub player: PlayerCharacter,
+    pub all_entitys: Vec<Entity>
 }
 
-impl<'a> GameState<'a> {
+impl GameState {
     pub fn new() -> Self {
         Self {
             history: vec!["hi".to_string()],
-            current_area: FirstRoom::new().area,
+            current_area: Bathroom::new().area,
             // TODO! change this to a gloal variable
             previous_area: Area::new(),
             all_areas: [FirstRoom::new().area, Bathroom::new().area],
@@ -87,6 +87,11 @@ impl<'a> GameState<'a> {
     /// Gets the index to the collectable item.
     pub fn get_collect_index(&self, input: &String) -> Option<usize> {
         self.current_area.room.get_collect_index(input)
+    }
+    /// Prints the room lore.
+    pub fn print_room(&self) {
+        println!("{}", get_room_lore(self.current_area.room.lore, 0));
+        println!("{}", get_room_lore(self.current_area.room.lore, 1));
     }
 }
 

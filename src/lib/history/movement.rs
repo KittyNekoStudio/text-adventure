@@ -12,7 +12,7 @@ pub fn check_room(input: &String, area: &Area) -> bool {
     return false;
 }
 /// Moves to the provided room.
-pub fn move_to_room<'a>(gamestate: &mut GameState) -> &'a GameState<'a> {
+pub fn move_to_room(gamestate: &mut GameState) -> & GameState {
     gamestate.push_prev_area();
     if gamestate.history.last() == Some(&gamestate.current_area.room.main_area_name) {
         gamestate.current_area = gamestate.all_areas[get_area
@@ -29,7 +29,7 @@ pub fn move_to_room<'a>(gamestate: &mut GameState) -> &'a GameState<'a> {
             (gamestate
                 .history
                 .last()
-                .expect("Error move to room 3"))]
+                .expect("Error move to room 2"))]
                 .clone();
         }
     }
@@ -38,7 +38,7 @@ pub fn move_to_room<'a>(gamestate: &mut GameState) -> &'a GameState<'a> {
 /// Returns a number corresponding to an areas name.
 pub fn get_area(area_type: &String) -> usize {
     match area_type.as_str() {
-        "room" => 0,
+        "bedroom" => 0,
         "bathroom" => 1,
         _ => 0
     }

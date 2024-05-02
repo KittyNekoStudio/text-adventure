@@ -1,3 +1,14 @@
+May 1 2024(2)
+Added:
+ the first scene
+
+Changed:
+ the items are now split between interactable and collectable
+ they are not combined into one type
+
+ names and descriptions are now held in an array
+ index into the array by the lore field on the item
+-----------------------------------------------------------------------------------------
 May 1 2024
 Added:
 the start of changing how items work
@@ -9,7 +20,7 @@ Added:
  store field to GameState
  if store false it cannot push to inventory
 
- Some comments
+ some comments
 -----------------------------------------------------------------------------------------
 April 28 2024(2)
 Added:

@@ -7,7 +7,7 @@ pub enum MagicType {
     Arcane,
 }
 
-#[derive(Debug, Clone, Copy,PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 /// Different types of weapons
 pub enum WeaponType {
     Sharp,
