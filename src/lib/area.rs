@@ -1,2 +1,2 @@
 pub mod def;
-pub mod first_room;
+pub mod all_rooms;

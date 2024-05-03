@@ -1,2 +1,2 @@
 pub mod play_game;
-mod first_scene;
+mod all_scenes;

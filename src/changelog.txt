@@ -1,3 +1,30 @@
+May 3 2024
+Added:
+ the hallway area
+
+ print_search()
+ gives the description of the area
+ 
+ second_check() returns true if the 
+ conditions for the the second scene have occurred
+
+ all_scenes() 
+ holds bool values that indicate if a scene has occurred
+ scene_complete()
+ updates all_scenes() when a scene has occurred
+
+
+Changed:
+ first_room.rs to all_rooms.rs
+
+ first_scene.rs to all_scenes.rs
+
+Moved:
+ default_state() to GameState as a method
+
+Removed:
+ new_game.rs
+-----------------------------------------------------------------------------------------
 May 2 2024
 Added:
  a counter to Room

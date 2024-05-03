@@ -1,10 +1,11 @@
-use crate::{area::{def::Area, first_room::{Bathroom, FirstRoom}}, entitys::{entity::Entity, player_character::PlayerCharacter}, history::{history::History, movement::get_area}, item::descriptions::get_room_lore};
+use crate::{area::{all_rooms::{Bathroom, FirstRoom, Hallway}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, entity::Entity, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, SEARCHLORE}, item_interaction::item_interaction}};
 #[derive(Debug, Clone, PartialEq)]
 pub struct GameState {
     pub history: History,
     pub current_area: Area,
     pub previous_area: Area,
-    pub all_areas: [Area; 2],
+    pub all_areas: [Area; 3],
+    pub all_scenes: [bool; 2],
     pub movement: bool,
     pub store: bool,
     pub player: PlayerCharacter,
@@ -18,7 +19,8 @@ impl GameState {
             current_area: Bathroom::new().area,
             // TODO! change this to a gloal variable
             previous_area: Area::new(),
-            all_areas: [FirstRoom::new().area, Bathroom::new().area],
+            all_areas: [FirstRoom::new().area, Bathroom::new().area, Hallway::new().area],
+            all_scenes: [true, false],
             movement: true,
             store: true,
             player: PlayerCharacter::new(),
@@ -45,6 +47,10 @@ impl GameState {
         self.store = true;
         self
     }
+    /// Returns time entered.
+    pub fn times_entered(&self, index: usize) -> usize {
+        self.all_areas[index].room.times_entered
+    }
     /// Checks if player can move before pushing to history.
     pub fn push_movement(&mut self, room: &String) -> &Self {
         if self.movement {
@@ -61,7 +67,7 @@ impl GameState {
     /// to be equal to the area the palyer has been through. 
     pub fn update_area(&mut self) -> &Self {
         let mut rev = self.history.iter().rev();
-        let (_, previous_area) = (rev.next(), rev.next().expect("Previous area Err"));
+        let (_, previous_area) = (rev.next(), rev.next().expect("Update area Err"));
         self.all_areas[get_area(previous_area)] = 
             self
             .previous_area
@@ -93,10 +99,66 @@ impl GameState {
         println!("{}", get_room_lore(self.current_area.room.lore, 0));
         println!("{}", get_room_lore(self.current_area.room.lore, 1));
     }
+    /// Prints the clues a room has.
+    pub fn print_search(&self) {
+        println!("{}", SEARCHLORE[self.current_area.room.lore][0])
+    }
     /// Adds to time entered room
     pub fn add_entered(&mut self) -> &Self {
         self.current_area.room.times_entered += 1;
         self
     }
+    /// Sets a scene to complete.
+    pub fn scene_complete(&mut self, index: usize) -> &Self {
+        self.all_scenes[index] = true;
+        self
+    }
 }
-
+// In a different block for readability.
+impl GameState {
+    pub fn default_state(&mut self) -> bool {
+    let input = recive_input().to_lowercase();
+    let interaction = item_interaction(&input, self);
+    if input == "search" {
+        self.print_search();
+        return true;
+    } else if check_room(&input, &self.current_area) {
+        self.push_movement(&input);
+        move_to_room(self);
+        self.add_entered();
+        println!("{:?}", self.current_area.room);
+        self.print_room();
+        self.update_area();
+        return true;
+    } else if check_entity_field(&input) {
+        self.player.entity.print_entity(match_entity_field(&input));
+        return true;
+    } else if interaction == 1 {
+        if self.current_area.room.collectable_item.len() == 0 {
+            println!("Nothing matches with what you typed.");
+            return true;
+        }
+        self.pickup_item(self.get_collect_index(&input));
+        if !self.store {
+            println!("Nothing matches with what you typed.");
+            return true;
+        }
+        return true;
+    }
+    if input == String::from("quit") {
+        std::process::exit(0);
+    } else {
+        if interaction == 0 {return true;}
+        println!("Nothing matches with what you typed.");
+        return true;
+    }
+  }
+}
+// In a different block for readability.
+impl GameState {
+    /// Check if second scene can be played.
+    pub fn second_check(&self) -> bool {
+        if self.times_entered(2) != 0 {return true}
+        else {return false}
+    }
+}
