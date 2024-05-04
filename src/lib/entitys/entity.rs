@@ -74,7 +74,6 @@ impl Entity {
             self.stats.0, self.stats.1, self.stats.2, self.stats.3, self.stats.4),
             2 => for item in &self.inventory {
                 print_collectable(*item);
-                println!("");
             },
             _ => ()
         }

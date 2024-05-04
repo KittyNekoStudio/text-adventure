@@ -1,11 +1,11 @@
-use crate::{area::{all_rooms::{Bathroom, FirstRoom, Hallway}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, entity::Entity, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, SEARCHLORE}, item_interaction::item_interaction}};
+use crate::{area::{all_rooms::{Bathroom, FirstRoom, Hallway}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, entity::Entity, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}};
 #[derive(Debug, Clone, PartialEq)]
 pub struct GameState {
     pub history: History,
     pub current_area: Area,
     pub previous_area: Area,
     pub all_areas: [Area; 3],
-    pub all_scenes: [bool; 2],
+    pub scenes_completed: [bool; 3],
     pub movement: bool,
     pub store: bool,
     pub player: PlayerCharacter,
@@ -20,7 +20,7 @@ impl GameState {
             // TODO! change this to a gloal variable
             previous_area: Area::new(),
             all_areas: [FirstRoom::new().area, Bathroom::new().area, Hallway::new().area],
-            all_scenes: [true, false],
+            scenes_completed: [true, true, false],
             movement: true,
             store: true,
             player: PlayerCharacter::new(),
@@ -101,7 +101,7 @@ impl GameState {
     }
     /// Prints the clues a room has.
     pub fn print_search(&self) {
-        println!("{}", SEARCHLORE[self.current_area.room.lore][0])
+        println!("{}", get_search_lore(self.current_area.room.lore))
     }
     /// Adds to time entered room
     pub fn add_entered(&mut self) -> &Self {
@@ -109,8 +109,8 @@ impl GameState {
         self
     }
     /// Sets a scene to complete.
-    pub fn scene_complete(&mut self, index: usize) -> &Self {
-        self.all_scenes[index] = true;
+    pub fn complete_scene(&mut self, index: usize) -> &Self {
+        self.scenes_completed[index] = true;
         self
     }
 }
@@ -126,7 +126,6 @@ impl GameState {
         self.push_movement(&input);
         move_to_room(self);
         self.add_entered();
-        println!("{:?}", self.current_area.room);
         self.print_room();
         self.update_area();
         return true;
@@ -158,7 +157,9 @@ impl GameState {
 impl GameState {
     /// Check if second scene can be played.
     pub fn second_check(&self) -> bool {
-        if self.times_entered(2) != 0 {return true}
+        let mut hallway = Hallway::new();
+        hallway.area.room.times_entered = 1;
+        if self.current_area == hallway.area {return true}
         else {return false}
     }
 }

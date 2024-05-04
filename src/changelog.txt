@@ -1,3 +1,16 @@
+May 4 2024
+Added:
+ second_scene() to play_game()
+
+ some flavor to how the text looks
+ with colored
+
+ start_up_scene()
+
+ Removed:
+ choose_hair_color
+ choose_eye_color
+-----------------------------------------------------------------------------------------
 May 3 2024
 Added:
  the hallway area
@@ -12,7 +25,6 @@ Added:
  holds bool values that indicate if a scene has occurred
  scene_complete()
  updates all_scenes() when a scene has occurred
-
 
 Changed:
  first_room.rs to all_rooms.rs

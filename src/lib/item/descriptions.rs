@@ -1,33 +1,33 @@
-/// All the names and descriptions for items.
-pub const ITEMLORE: [[&str; 2]; 5] = [
-    ["Basic Staff", "A staff that can be found anywhere. Nothing special."], 
-    ["Basic Health Potion", "The cheapest of healing potions."],
-    ["Basic Mage Robe", "As much use as a bath robe."],
-    ["Your Bed", "The place you slept in for the past 6 years. That changes today."],
-    ["Mirror", "It refects your beautiful face."],
-    ];
-/// All the names and descriptions for rooms.
-pub const ROOMLORE: [[&str; 2]; 3] = [
-    // TODO! find a way to print text based on updated information
-    // example: you pick up the staff and the text giving notice to the staff goes away
-    // when you enter the room again
-    ["Bedroom", "The dorm looks clean but empty. Seems like the owner isn't home often."],
-    ["Bathroom", "A small dorm bathroom."],
-    ["Hallway", "The unkept hallway that connects school dorms together."]
-];
-    /// Holds the clues a room has.
-pub const SEARCHLORE: [[&str; 1]; 3] = [
-    ["There is a staff by the bed. The only doors lead to the bathroom and the hallway."],
-    ["This is a bathroom connected to a bedroom. It houses a giant mirror."],
-    ["Doors connecting to many dorm rooms line this hallway.
-Leaving the hallway leads to the rest of the school dorms."]    
-];
+use colored::Colorize;
 
 /// Get the descriptions or name of an item.
-pub fn get_item_lore(index1: usize, index2: usize) -> &'static str {
-    ITEMLORE[index1][index2]
+pub fn get_item_lore(index1: usize, index2: usize) -> String {
+    let item_lore = [
+    ["Basic Staff".bold(), "A staff that can be found anywhere. Nothing special.".into()], 
+    ["Basic Health Potion".bold(), "The cheapest of healing potions.".into()],
+    ["Basic Mage Robe".bold(), "As much use as a bath robe.".into()],
+    ["Your Bed".bold(), "The place you slept in for the past 6 years. That changes today.".into()],
+    ["Mirror".bold(), "It refects your beautiful face.".into()],
+    ];
+    item_lore[index1][index2].to_string()
 }
 /// Get the descriptions or name of the room.
-pub fn get_room_lore(index1: usize, index2: usize) -> &'static str {
-    ROOMLORE[index1][index2]
+pub fn get_room_lore(index1: usize, index2: usize) -> String {
+    let room_lore = [
+    ["Bedroom".bold(), "The dorm looks clean but empty. Seems like the owner isn't home often.".into()],
+    ["Bathroom".bold(), "A small dorm bathroom.".into()],
+    ["Hallway".bold(), "The unkept hallway that connects school dorms together.".into()]
+    ];
+    room_lore[index1][index2].to_string()
+}
+
+pub fn get_search_lore(index: usize) -> String {
+    let search_lore = [
+        // TODO! find a better way to concat strings
+        [format!("There is a {} {} {} {} {}{}", "staff".bold(), "by the bed. The only doors lead to the", "bathroom".bold(), "and the", "hallway".bold(), ".")],
+        [format!("This is a bathroom connected to a {} {} {}{} {} {} {}", "bedroom.".bold(), "It houses a giant", "mirror".bold(), ".", "With your", "robe".bold(), "hanging off it.")],
+        [format!("Doors connecting to many dorm rooms line this hallway.
+Leaving the hallway leads to the rest of the {}{}", "school dorms".bold(), ".")]    
+    ];
+    search_lore[index][0].to_string()
 }
