@@ -10,3 +10,7 @@ pub const MIRROR: InteractableItem = InteractableItem {
 pub const BED: InteractableItem = InteractableItem {
     lore: 3,
 };
+
+pub const DORMMAP: InteractableItem = InteractableItem {
+    lore: 5
+};

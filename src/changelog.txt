@@ -1,3 +1,22 @@
+May 6 2020
+ Added:
+ DormRoom struct
+ 
+ SchoolDorms struct
+
+ DORMMAP interactable
+
+ Hallway is now creates 4 different hallways
+ hallway_e1 hallway_e2 hallway_w1 hallway_w2
+-----------------------------------------------------------------------------------------
+May 5 2024
+ Added:
+ pickup item now prints some text
+
+ Changed:
+ printing now has a blank space between 
+ the different blocks of text
+-----------------------------------------------------------------------------------------
 May 4 2024
 Added:
  second_scene() to play_game()

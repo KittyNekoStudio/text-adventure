@@ -15,6 +15,7 @@ pub fn item_interaction(input: &String, gamestate: &mut GameState) -> i8 {
     for i in EXAMAINEKEYWORDS {
         if input.as_str().contains(i) {
         if check_int_item_field(input, &gamestate.current_area.room) {
+        println!("");
         print_interactable(gamestate.current_area.room.interactable_items[gamestate.get_inter_index(input)].1);
             return 0;
             }

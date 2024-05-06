@@ -18,7 +18,6 @@ impl FirstRoom {
                 interactable_items: vec![("bed".to_string(), EVERYINTITEM[0])],
                 main_area_name: "hallway".to_string(),
                 sub_area_names: vec!["bathroom".to_string()],
-                id: 1,
                 lore: 0,
                 times_entered: 0
                 }
@@ -41,7 +40,6 @@ impl Bathroom {
                 interactable_items: vec![("mirror".to_string(), EVERYINTITEM[1])],
                 main_area_name: "bedroom".to_string(),
                 sub_area_names: vec![],
-                id: 2,
                 lore: 1,
                 times_entered: 0
                 }
@@ -55,7 +53,7 @@ pub struct Hallway {
 }
 
 impl Hallway {
-    pub fn new() -> Self {
+    pub fn new_e1() -> Self {
         Self {
             area: Area {
                 room: Room {
@@ -63,9 +61,170 @@ impl Hallway {
                     collectable_item: vec![],
                     interactable_items: vec![],
                     main_area_name: "school dorms".to_string(),
-                    sub_area_names: vec!["bedroom".to_string()],
-                    id: 3,
+                    sub_area_names: vec![
+                    "bedroom".to_string(),
+                    "dorm 1".to_string(),
+                    "dorm 2".to_string(),
+                    "dorm 3".to_string(),
+                    "dorm 4".to_string(),
+                    ],
                     lore: 2,
+                    times_entered: 0
+                }
+            }
+        }
+    }
+    pub fn new_e2() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                    entitys: vec![],
+                    collectable_item: vec![],
+                    interactable_items: vec![],
+                    main_area_name: "school dorms".to_string(),
+                    sub_area_names: vec![
+                    "dorm 5".to_string(),
+                    "dorm 6".to_string(),
+                    "dorm 7".to_string(),
+                    "dorm 8".to_string(),
+                    ],
+                    lore: 5,
+                    times_entered: 0
+                }
+            }
+        }
+    }
+    pub fn new_w1() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                    entitys: vec![],
+                    collectable_item: vec![],
+                    interactable_items: vec![],
+                    main_area_name: "school dorms".to_string(),
+                    sub_area_names: vec![
+                    "dorm 9".to_string(),
+                    "dorm 10".to_string(),
+                    "dorm 11".to_string(),
+                    "dorm 12".to_string(),
+                    ],
+                    lore: 7,
+                    times_entered: 0
+                }
+            }
+        }
+    }
+    pub fn new_w2() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                    entitys: vec![],
+                    collectable_item: vec![],
+                    interactable_items: vec![],
+                    main_area_name: "school dorms".to_string(),
+                    sub_area_names: vec![
+                    "dorm 13".to_string(),
+                    "dorm 14".to_string(),
+                    "dorm 15".to_string(),
+                    "dorm 16".to_string(),
+                    ],
+                    lore: 9,
+                    times_entered: 0
+                }
+            }
+        }
+    }
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct DormRoom {
+    pub area: Area
+}
+
+impl DormRoom {
+    pub fn new_e1() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                    entitys: vec![],
+                    collectable_item: vec![],
+                    interactable_items: vec![],
+                    main_area_name: "east 1 hallway".to_string(),
+                    sub_area_names: vec!["bathroom".to_string(),],
+                    lore: 3,
+                    times_entered: 0
+                }
+            }
+        }
+    } 
+    pub fn new_e2() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                    entitys: vec![],
+                    collectable_item: vec![],
+                    interactable_items: vec![],
+                    main_area_name: "east 2 hallway".to_string(),
+                    sub_area_names: vec!["bathroom".to_string(),],
+                    lore: 6,
+                    times_entered: 0
+                }
+            }
+        }
+    }
+    pub fn new_w1() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                    entitys: vec![],
+                    collectable_item: vec![],
+                    interactable_items: vec![],
+                    main_area_name: "west 1 hallway".to_string(),
+                    sub_area_names: vec!["bathroom".to_string(),],
+                    lore: 8,
+                    times_entered: 0
+                }
+            }
+        }
+    }
+    pub fn new_w2() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                    entitys: vec![],
+                    collectable_item: vec![],
+                    interactable_items: vec![],
+                    main_area_name: "west 2 hallway".to_string(),
+                    sub_area_names: vec!["bathroom".to_string(),],
+                    lore: 10,
+                    times_entered: 0
+                }
+            }
+        }
+    }
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct SchoolDorm {
+    pub area: Area
+}
+
+impl SchoolDorm {
+    pub fn new() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                    entitys: vec![],
+                    collectable_item: vec![],
+                    interactable_items: vec![("map".to_string(), EVERYINTITEM[2])],
+                    main_area_name: "school".to_string(),
+                    sub_area_names: vec![
+                    "east 1 hallway".to_string(),
+                    "east 2 hallway".to_string(),
+                    "west 1 hallway".to_string(),
+                    "west 2 hallway".to_string(),
+                    "office".to_string()],
+                    lore: 4,
                     times_entered: 0
                 }
             }

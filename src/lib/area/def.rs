@@ -21,7 +21,6 @@ pub struct Room {
     pub interactable_items: Vec<(String, InteractableItem)>,
     pub main_area_name: String,
     pub sub_area_names: Vec<String>,
-    pub id: usize,
     pub lore: usize,
     pub times_entered: usize
 }
@@ -34,7 +33,6 @@ impl Room {
             interactable_items: vec![],
             main_area_name: String::from(""),
             sub_area_names: vec![],
-            id: 0,
             lore: 0,
             times_entered: 0
         }

@@ -7,8 +7,8 @@ pub fn start_up_scene() {
     println!("This is my first game and I would appreciate any feedback you have.");
     println!("This is a text adventure game about a recent graduate of a magical school");
     println!("doing jobs to repay his school debt.");
-    println!("The controls are through typing in text into the console.");
-    println!("Capitalization does not matter");
+    println!("The controls are through typing text into the console.");
+    println!("Capitalization does not matter.");
     println!("Type help if you need any help.");
     println!("To start the game type yes into the terminal.");
     println!("Type no to quit out of the game.");
@@ -24,7 +24,8 @@ pub fn start_up_scene() {
 }
 /// The waking up scene.
 pub fn first_scene(gamestate: &mut GameState) -> &GameState {
-    println!("You wake up with a load yawn. While the first thoughts of the day come and go, only one stands out.");
+    println!("");
+    println!("You awake with a load yawn. While the first thoughts of the day come and go, only one stands out.");
     println!("What does the future hold for you after today.");
     println!("As you enter the bathroom to get ready for the day you pass by your reflection and see.");
     println!("A skinny man with well kept hair and a clean shaven face.");
@@ -33,6 +34,7 @@ pub fn first_scene(gamestate: &mut GameState) -> &GameState {
 }
 /// The scene in the hallway.
 pub fn second_scene(gamestate: &mut GameState) -> &GameState {
+    println!("");
     println!("As you leave your room you think of what today means.");
     println!("Today you graduate.");
     println!("Today you leave the safety of the campus and go out into the real world.");
