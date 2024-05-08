@@ -1,6 +1,6 @@
 use crate::{damage_types::damage_mod::MagicType, def::recive_input};
 
-use super::player_character::PlayerCharacter;
+use super::{entity::Entity, npcs::BasicNPC, player_character::PlayerCharacter};
 /// A function that creates a character and allows modification of some values.
 pub fn create_player() -> PlayerCharacter {
     let mut player = PlayerCharacter::new();
@@ -25,4 +25,16 @@ fn choose_magic_type() -> Option<MagicType> {
         magic = choose_magic_type();
     }
     return magic;
+}
+
+pub fn create_dorm_manager() -> BasicNPC {
+    let manager = BasicNPC {
+        entity: Entity::new(),
+        name: "manager".to_string(),
+        dialogue: vec!["What are you doing here Adam? It't not like you to be late.
+Get to the auditorium before you miss the ceremony.".to_string(), "Why are you still here, get a move on.".to_string()],
+        talked_to: 0
+    };
+    
+    return manager;
 }

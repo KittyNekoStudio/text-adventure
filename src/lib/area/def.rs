@@ -1,4 +1,4 @@
-use crate::{entitys::entity::Entity, item::def::{CollectableItem, InteractableItem}};
+use crate::{entitys::npcs::BasicNPC, item::def::{CollectableItem, InteractableItem}};
 
 /// A struct that makes all rooms one type.
 #[derive(Debug, Clone, PartialEq)]
@@ -16,7 +16,7 @@ impl Area {
 /// A struct that holds the value of the room.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Room {
-    pub entitys: Vec<Entity>,
+    pub entitys: Vec<BasicNPC>,
     pub collectable_item: Vec<(String, CollectableItem)>,
     pub interactable_items: Vec<(String, InteractableItem)>,
     pub main_area_name: String,
@@ -56,5 +56,16 @@ impl Room {
     /// Removes and returns the provided item.
     pub fn get_item(&mut self, index: usize) -> (String, CollectableItem) {
         self.collectable_item.remove(index)
+    }
+    pub fn get_npc_index(&self, input: &String) -> Option<usize> {
+        Some(self
+        .entitys
+        .iter()
+        .position(|i| input.contains(&i.name))?
+        )
+    }
+    /// Increments talked_to
+    pub fn add_talked_to(&mut self, index: usize) {
+        self.entitys[index].talked_to += 1;
     }
 }

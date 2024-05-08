@@ -1,12 +1,12 @@
 use colored::Colorize;
 
-use crate::{area::{all_rooms::{Bathroom, DormRoom, FirstRoom, Hallway, SchoolDorm}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, entity::Entity, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}};
+use crate::{area::{all_rooms::{Bathroom, DormOffice, DormRoom, FirstRoom, Hallway, SchoolDorm}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, entity::Entity, npc_interaction::npc_interaction, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}};
 #[derive(Debug, Clone, PartialEq)]
 pub struct GameState {
     pub history: History,
     pub current_area: Area,
     pub previous_area: Area,
-    pub all_areas: [Area; 11],
+    pub all_areas: [Area; 12],
     pub scenes_completed: [bool; 3],
     pub movement: bool,
     pub store: bool,
@@ -32,7 +32,8 @@ impl GameState {
             Hallway::new_w1().area,
             DormRoom::new_w1().area,
             Hallway::new_w2().area,
-            DormRoom::new_w2().area
+            DormRoom::new_w2().area,
+            DormOffice::new().area
             ],
             scenes_completed: [true, true, false],
             movement: true,
@@ -110,6 +111,9 @@ impl GameState {
     pub fn get_collect_index(&self, input: &String) -> Option<usize> {
         self.current_area.room.get_collect_index(input)
     }
+    pub fn get_npc_index(&self, input: &String) -> Option<usize> {
+        self.current_area.room.get_npc_index(input)
+    }
     /// Prints the room lore.
     pub fn print_room(&self) {
         println!("{}", get_room_lore(self.current_area.room.lore, 0));
@@ -118,6 +122,17 @@ impl GameState {
     /// Prints the clues a room has.
     pub fn print_search(&self) {
         println!("{}", get_search_lore(self.current_area.room.lore))
+    }
+    /// Prints dialogue.
+    pub fn print_dialogue(&self, index: usize) {
+        // TODO! change how printing dialogue works
+        if self.current_area.room.entitys[index].talked_to == 0 {
+            println!("");
+            println!("{}", self.current_area.room.entitys[index].dialogue[0]);
+        } else if self.current_area.room.entitys[index].talked_to > 0 {
+            println!("");
+            println!("{}", self.current_area.room.entitys[index].dialogue[1]);
+        }
     }
     /// Adds to time entered room
     pub fn add_entered(&mut self) -> &Self {
@@ -134,7 +149,8 @@ impl GameState {
 impl GameState {
     pub fn default_state(&mut self) -> bool {
     let input = recive_input().to_lowercase();
-    let interaction = item_interaction(&input, self);
+    let item_interaction = item_interaction(&input, self);
+    let npc_interaction = npc_interaction(&input);
     // TODO! change how to check the dorm room
     // so it doesn't have to be in default_state()
     if self.dorm_room_check(&input) {
@@ -158,7 +174,7 @@ impl GameState {
         println!("");
         self.player.entity.print_entity(match_entity_field(&input));
         return true;
-    } else if interaction == 1 {
+    } else if item_interaction == 1 {
         if self.current_area.room.collectable_item.len() == 0 {
             println!("");
             println!("Nothing matches with what you typed.");
@@ -171,11 +187,20 @@ impl GameState {
             return true;
         }
         return true;
+    } else if npc_interaction {
+        if self.get_npc_index(&input) == None {
+            println!("");
+            println!("Nothing matches with what you typed.");
+            return true;
+        }
+        self.print_dialogue(self.get_npc_index(&input).expect("Npc dialogue error 1"));
+        self.current_area.room.add_talked_to(self.get_npc_index(&input).expect("Npc dialogue error 2"));
+        return true;
     }
     if input == String::from("quit") {
         std::process::exit(0);
     } else {
-        if interaction == 0 {return true;}
+        if item_interaction == 0 {return true;}
         println!("");
         println!("Nothing matches with what you typed.");
         return true;

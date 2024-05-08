@@ -27,6 +27,7 @@ pub fn get_room_lore(index1: usize, index2: usize) -> String {
     ["W1 Dorm Room".bold(), "Why are you in a strangers room, you freak.".into()],
     ["W2 Hallway".bold(), "The westside 2 hallway that connects dorms together.".into()],
     ["W2 Dorm Room".bold(), "Why are you in a strangers room, you freak.".into()],
+    ["Dorm Office".bold(), "An office for the dorm manager.".into()]
     ];
     room_lore[index1][index2].to_string()
 }
@@ -34,13 +35,13 @@ pub fn get_room_lore(index1: usize, index2: usize) -> String {
 pub fn get_search_lore(index: usize) -> String {
     let search_lore = [
         // TODO! find a better way to concat strings
-        [format!("There is a {} {} {}{} {} {} {}{}", "staff".bold(), "by the", "bed".bold(), ". The only doors lead to the", "bathroom".bold(), "and the", "hallway".bold(), ".")],
-        [format!("This is a bathroom connected to a {} {} {}{} {} {}", "bedroom.".bold(), "It houses a giant", "mirror".bold(), ". With your", "robe".bold(), "hanging off it.")],
-        [format!("Doors connecting to many {} {} {}{}", "dorm rooms".bold(), "line this hallway.
+[format!("There is a {} {} {}{} {} {} {}{}", "staff".bold(), "by the", "bed".bold(), ". The only doors lead to the", "bathroom".bold(), "and the", "hallway".bold(), ".")],
+[format!("This is a bathroom connected to a {} {} {}{} {} {}", "bedroom.".bold(), "It houses a giant", "mirror".bold(), ". With your", "robe".bold(), "hanging off it.")],
+[format!("Doors connecting to many {} {} {}{}", "dorm rooms".bold(), "line this hallway.
 Leaving the hallway leads to the rest of the", "school dorms".bold(), ".")],
-        [format!("Similar to your room there is a {} {} {}{}", "bathroom".bold(), "and the room leads out into the", "east 1 hallway".bold(), ".")],
-        [format!("There is an {} {} {} {}", "office".bold(), "with a person inside. A", "map".bold(), "of the dorms covers the right wall.")],
-        [format!("Doors connecting to many {} {} {}{}", "dorm rooms".bold(), "line this hallway.
+[format!("Similar to your room there is a {} {} {}{}", "bathroom".bold(), "and the room leads out into the", "east 1 hallway".bold(), ".")],
+[format!("There is an {} {} {} {}", "office".bold(), "with a person inside. A", "map".bold(), "of the dorms covers the right wall.")],
+[format!("Doors connecting to many {} {} {}{}", "dorm rooms".bold(), "line this hallway.
 Leaving the hallway leads to the rest of the", "school dorms".bold(), ".")],
 [format!("Similar to your room there is a {} {} {}{}", "bathroom".bold(), "and the room leads out into the", "east 2 hallway".bold(), ".")],
 [format!("Doors connecting to many {} {} {}{}", "dorm rooms".bold(), "line this hallway.
@@ -48,7 +49,8 @@ Leaving the hallway leads to the rest of the", "school dorms".bold(), ".")],
 [format!("Similar to your room there is a {} {} {}{}", "bathroom".bold(), "and the room leads out into the", "west 1 hallway".bold(), ".")],
 [format!("Doors connecting to many {} {} {}{}", "dorm rooms".bold(), "line this hallway.
 Leaving the hallway leads to the rest of the", "school dorms".bold(), ".")],
-[format!("Similar to your room there is a {} {} {}{}", "bathroom".bold(), "and the room leads out into the", "west 2 hallway".bold(), ".")]
+[format!("Similar to your room there is a {} {} {}{}", "bathroom".bold(), "and the room leads out into the", "west 2 hallway".bold(), ".")],
+[format!("The office has a tidy dest with the {} {}", "manager".bold(), "sitting behind it. With vibrant plants and tall file cabinets lining the walls.")]
     ];
     search_lore[index][0].to_string()
 }

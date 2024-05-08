@@ -1,4 +1,4 @@
-use crate::item::def::{EVERYCOLITEM, EVERYINTITEM};
+use crate::{entitys::create_entity::create_dorm_manager, item::def::{EVERYCOLITEM, EVERYINTITEM}};
 
 use super::def::{Area, Room};
 #[derive(Debug, Clone, PartialEq)]
@@ -195,7 +195,7 @@ impl DormRoom {
                     collectable_item: vec![],
                     interactable_items: vec![],
                     main_area_name: "west 2 hallway".to_string(),
-                    sub_area_names: vec!["bathroom".to_string(),],
+                    sub_area_names: vec!["bathroom".to_string()],
                     lore: 10,
                     times_entered: 0
                 }
@@ -226,6 +226,28 @@ impl SchoolDorm {
                     "office".to_string()],
                     lore: 4,
                     times_entered: 0
+                }
+            }
+        }
+    }
+}
+#[derive(Debug, Clone, PartialEq)]
+pub struct DormOffice {
+    pub area: Area
+}
+
+impl DormOffice {
+    pub fn new() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                    entitys: vec![create_dorm_manager()],
+                    collectable_item: vec![],
+                    interactable_items: vec![],
+                    main_area_name: "school dorms".to_string(),
+                    sub_area_names: vec![],
+                    lore: 11,
+                    times_entered: 0   
                 }
             }
         }

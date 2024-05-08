@@ -1,5 +1,19 @@
-May 6 2020
- Added:
+May 7 2024
+Added:
+ npcs.rs
+
+ BasicNPC struct
+
+ DormOffice struct
+
+ npc_interaction.rs
+
+ print_dialogue()
+
+ get_npc_index()
+-----------------------------------------------------------------------------------------
+May 6 2024
+Added:
  DormRoom struct
  
  SchoolDorms struct
@@ -10,7 +24,7 @@ May 6 2020
  hallway_e1 hallway_e2 hallway_w1 hallway_w2
 -----------------------------------------------------------------------------------------
 May 5 2024
- Added:
+Added:
  pickup item now prints some text
 
  Changed:

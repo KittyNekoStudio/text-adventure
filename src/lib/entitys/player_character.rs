@@ -14,8 +14,8 @@ impl PlayerCharacter {
     pub fn new() -> Self {
         PlayerCharacter {
             entity: Entity::new(),
-            first_name: String::from("Bob"),
-            last_name: String::from("Bob"),
+            first_name: String::from("Adam"),
+            last_name: String::from("See"),
             combat_magic: MagicType::Fire,
         }
     }
