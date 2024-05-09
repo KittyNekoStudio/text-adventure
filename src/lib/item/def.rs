@@ -1,13 +1,13 @@
 use crate::{damage_types::damage_mod::WeaponType, item::descriptions::get_item_lore};
 
-use super::{consumable::HEALTHPOTION, held_item::STAFF, interactable::{BED, DORMMAP, MIRROR}, wearable::ROBE};
+use super::{consumable::HEALTHPOTION, held_item::STAFF, interactable::{BED, CAMPUSSQUAREMAP, DORMMAP, MIRROR}, wearable::ROBE};
 /// Every collectable item in the game.
 pub const EVERYCOLITEM: [CollectableItem; 3] = [
     STAFF, HEALTHPOTION, ROBE
 ];
 /// Every interactable item in the game.
-pub const EVERYINTITEM: [InteractableItem; 3] = [
-    BED, MIRROR, DORMMAP
+pub const EVERYINTITEM: [InteractableItem; 4] = [
+    BED, MIRROR, DORMMAP, CAMPUSSQUAREMAP
 ];
 
 /// The struct that defines Collectable items.

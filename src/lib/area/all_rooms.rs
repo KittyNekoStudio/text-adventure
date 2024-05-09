@@ -217,7 +217,7 @@ impl SchoolDorm {
                     entitys: vec![],
                     collectable_item: vec![],
                     interactable_items: vec![("map".to_string(), EVERYINTITEM[2])],
-                    main_area_name: "school".to_string(),
+                    main_area_name: "campus square".to_string(),
                     sub_area_names: vec![
                     "east 1 hallway".to_string(),
                     "east 2 hallway".to_string(),
@@ -248,6 +248,29 @@ impl DormOffice {
                     sub_area_names: vec![],
                     lore: 11,
                     times_entered: 0   
+                }
+            }
+        }
+    }
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct CampusSquare {
+    pub area: Area
+}
+
+impl CampusSquare {
+    pub fn new() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                entitys: vec![],
+                collectable_item: vec![],
+                interactable_items: vec![("map".to_string(), EVERYINTITEM[3])],
+                main_area_name: "school entrance".to_string(),
+                sub_area_names: vec!["school dorms".to_string(), "auditorium".to_string()],
+                lore: 12,
+                times_entered: 0
                 }
             }
         }

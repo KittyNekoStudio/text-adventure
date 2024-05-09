@@ -1,14 +1,15 @@
 use super::entity::Entity;
 
 #[derive(Debug, Clone, PartialEq)]
-pub struct BasicNPC {
+/// The struct that defines non player chracters.
+pub struct NPC {
     pub entity: Entity,
     pub name: String,
     pub dialogue: Vec<String>,
     pub talked_to: usize
 }
 
-impl BasicNPC {
+impl NPC {
     pub fn new() -> Self {
         Self {
             entity: Entity {

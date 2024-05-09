@@ -1,17 +1,16 @@
 use colored::Colorize;
 
-use crate::{area::{all_rooms::{Bathroom, DormOffice, DormRoom, FirstRoom, Hallway, SchoolDorm}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, entity::Entity, npc_interaction::npc_interaction, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}};
+use crate::{area::{all_rooms::{Bathroom, CampusSquare, DormOffice, DormRoom, FirstRoom, Hallway, SchoolDorm}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, dialogue::print_dialogue, npc_interaction::npc_interaction, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}};
 #[derive(Debug, Clone, PartialEq)]
 pub struct GameState {
     pub history: History,
     pub current_area: Area,
     pub previous_area: Area,
-    pub all_areas: [Area; 12],
-    pub scenes_completed: [bool; 3],
+    pub all_areas: [Area; 13],
+    pub scenes_completed: [bool; 4],
     pub movement: bool,
     pub store: bool,
     pub player: PlayerCharacter,
-    pub all_entitys: Vec<Entity>
 }
 
 impl GameState {
@@ -33,13 +32,13 @@ impl GameState {
             DormRoom::new_w1().area,
             Hallway::new_w2().area,
             DormRoom::new_w2().area,
-            DormOffice::new().area
+            DormOffice::new().area,
+            CampusSquare::new().area
             ],
-            scenes_completed: [true, true, false],
+            scenes_completed: [true, true, false, false],
             movement: true,
             store: true,
-            player: PlayerCharacter::new(),
-            all_entitys: vec![]
+            player: PlayerCharacter::new()
         }
     }
     /// Player can no longer move.
@@ -124,15 +123,23 @@ impl GameState {
         println!("{}", get_search_lore(self.current_area.room.lore))
     }
     /// Prints dialogue.
-    pub fn print_dialogue(&self, index: usize) {
-        // TODO! change how printing dialogue works
-        if self.current_area.room.entitys[index].talked_to == 0 {
-            println!("");
-            println!("{}", self.current_area.room.entitys[index].dialogue[0]);
-        } else if self.current_area.room.entitys[index].talked_to > 0 {
-            println!("");
-            println!("{}", self.current_area.room.entitys[index].dialogue[1]);
-        }
+    pub fn get_dialogue(&mut self, input: &String) {
+        print_dialogue(
+            self
+            .current_area.room
+            .entitys[
+                self
+                .get_npc_index(&input)
+                .expect("Npc dialogue error 1")
+                ]
+                .clone()
+            );
+        self.current_area.room.
+        add_talked_to(
+            
+            self.get_npc_index(&input)
+            .expect("Npc dialogue error 2")
+        );
     }
     /// Adds to time entered room
     pub fn add_entered(&mut self) -> &Self {
@@ -193,8 +200,7 @@ impl GameState {
             println!("Nothing matches with what you typed.");
             return true;
         }
-        self.print_dialogue(self.get_npc_index(&input).expect("Npc dialogue error 1"));
-        self.current_area.room.add_talked_to(self.get_npc_index(&input).expect("Npc dialogue error 2"));
+        self.get_dialogue(&input);
         return true;
     }
     if input == String::from("quit") {
@@ -239,5 +245,12 @@ impl GameState {
         }
         }
         return false;
+    }
+    /// Check if third scene can be played.
+    pub fn third_check(&self) -> bool {
+        let mut campus_square = CampusSquare::new();
+        campus_square.area.room.times_entered = 1;
+        if self.current_area == campus_square.area {return true}
+        else {return false}
     }
 }

@@ -1,4 +1,4 @@
-use crate::{entitys::npcs::BasicNPC, item::def::{CollectableItem, InteractableItem}};
+use crate::{entitys::npcs::NPC, item::def::{CollectableItem, InteractableItem}};
 
 /// A struct that makes all rooms one type.
 #[derive(Debug, Clone, PartialEq)]
@@ -16,7 +16,7 @@ impl Area {
 /// A struct that holds the value of the room.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Room {
-    pub entitys: Vec<BasicNPC>,
+    pub entitys: Vec<NPC>,
     pub collectable_item: Vec<(String, CollectableItem)>,
     pub interactable_items: Vec<(String, InteractableItem)>,
     pub main_area_name: String,

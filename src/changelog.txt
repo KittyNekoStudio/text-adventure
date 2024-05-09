@@ -1,3 +1,17 @@
+May 8 2024
+Added:
+ dialogue.rs
+
+ CampusSquare struct
+
+ CAMPUSSQUAREMAP
+
+ third_scene()
+
+Changed:
+ print_dialogue() to get_dialogue()
+ it now calls print_dialogue() in dialogue.rs
+-----------------------------------------------------------------------------------------
 May 7 2024
 Added:
  npcs.rs

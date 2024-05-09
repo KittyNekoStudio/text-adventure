@@ -1,9 +1,9 @@
-use lib::{def::recive_input, gamestate::def::GameState};
+use lib::def::recive_input;
 
 /// The start scene that gives some information to the player.
 pub fn start_up_scene() {
     // TODO! figure out a title
-    println!("Thank you for playing PLACEHOLDER.");
+    println!("Thank you for playing The Bizarre Things Adam Sees.");
     println!("This is my first game and I would appreciate any feedback you have.");
     println!("This is a text adventure game about a recent graduate of a magical school");
     println!("doing jobs to repay his school debt.");
@@ -23,17 +23,16 @@ pub fn start_up_scene() {
     }
 }
 /// The waking up scene.
-pub fn first_scene(gamestate: &mut GameState) -> &GameState {
+pub fn first_scene() {
     println!("");
     println!("You awake with a load yawn. While the first thoughts of the day come and go, only one stands out.");
     println!("What does the future hold for you after today.");
     println!("As you enter the bathroom to get ready for the day you pass by your reflection and see.");
     println!("A skinny man with well kept hair and a clean shaven face.");
     println!("His clothes look well ironed, and he seems to take care of his apperence.");
-    return gamestate;
 }
 /// The scene in the hallway.
-pub fn second_scene(gamestate: &mut GameState) -> &GameState {
+pub fn second_scene() {
     println!("");
     println!("As you leave your room you think of what today means.");
     println!("Today you graduate.");
@@ -42,5 +41,15 @@ pub fn second_scene(gamestate: &mut GameState) -> &GameState {
     println!("But you never fully know.");
     println!("Things can go against even your predictions.");
     println!("Although that happens less and less lately.");
-    return gamestate;
+}
+
+/// The scene in the campus square.
+pub fn third_scene() {
+    println!("");
+    println!("For the past weeks when you have been divining this day.");
+    println!("All you could see was that great change was coming to your life.");
+    println!("Which isn't helpful because obviously change will come.");
+    println!("As the life you had lived for the past 6 years comes to an end today.");
+    println!("Knowing so little doesn't happen often anymore.");
+    println!("It's making you feel a little antsty.");
 }
