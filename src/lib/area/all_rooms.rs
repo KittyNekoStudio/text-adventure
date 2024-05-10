@@ -1,6 +1,8 @@
 use crate::{entitys::create_entity::create_dorm_manager, item::def::{EVERYCOLITEM, EVERYINTITEM}};
 
 use super::def::{Area, Room};
+
+/// Struct for player school dorm.
 #[derive(Debug, Clone, PartialEq)]
 pub struct FirstRoom {
     pub area: Area
@@ -25,6 +27,7 @@ impl FirstRoom {
         }
     }
 }
+/// Struct for the bathroom.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Bathroom {
     pub area: Area
@@ -47,6 +50,7 @@ impl Bathroom {
         }
     }
 }
+/// Struct for the hallway.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Hallway {
     pub area: Area
@@ -135,7 +139,7 @@ impl Hallway {
         }
     }
 }
-
+/// Struct for the dorm rooms.
 #[derive(Debug, Clone, PartialEq)]
 pub struct DormRoom {
     pub area: Area
@@ -203,7 +207,7 @@ impl DormRoom {
         }
     }
 }
-
+/// Struct form the main school dorm area.
 #[derive(Debug, Clone, PartialEq)]
 pub struct SchoolDorm {
     pub area: Area
@@ -231,6 +235,7 @@ impl SchoolDorm {
         }
     }
 }
+/// Struct for the office in the dorms.
 #[derive(Debug, Clone, PartialEq)]
 pub struct DormOffice {
     pub area: Area
@@ -253,7 +258,7 @@ impl DormOffice {
         }
     }
 }
-
+/// Struct for the school campus square.
 #[derive(Debug, Clone, PartialEq)]
 pub struct CampusSquare {
     pub area: Area
@@ -270,6 +275,29 @@ impl CampusSquare {
                 main_area_name: "school entrance".to_string(),
                 sub_area_names: vec!["school dorms".to_string(), "auditorium".to_string()],
                 lore: 12,
+                times_entered: 0
+                }
+            }
+        }
+    }
+}
+/// Struct for the school auditorium.
+#[derive(Debug, Clone, PartialEq)]
+pub struct SchoolAuditorium {
+    pub area: Area
+}
+
+impl SchoolAuditorium {
+    pub fn new() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                entitys: vec![],
+                collectable_item: vec![],
+                interactable_items: vec![],
+                main_area_name: "campus square".to_string(),
+                sub_area_names: vec![],
+                lore: 13,
                 times_entered: 0
                 }
             }

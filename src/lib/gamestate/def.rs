@@ -1,12 +1,12 @@
 use colored::Colorize;
 
-use crate::{area::{all_rooms::{Bathroom, CampusSquare, DormOffice, DormRoom, FirstRoom, Hallway, SchoolDorm}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, dialogue::print_dialogue, npc_interaction::npc_interaction, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}};
+use crate::{area::{all_rooms::{Bathroom, CampusSquare, DormOffice, DormRoom, FirstRoom, Hallway, SchoolAuditorium, SchoolDorm}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, dialogue::print_dialogue, npc_interaction::npc_interaction, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}};
 #[derive(Debug, Clone, PartialEq)]
 pub struct GameState {
     pub history: History,
     pub current_area: Area,
     pub previous_area: Area,
-    pub all_areas: [Area; 13],
+    pub all_areas: [Area; 14],
     pub scenes_completed: [bool; 4],
     pub movement: bool,
     pub store: bool,
@@ -33,7 +33,8 @@ impl GameState {
             Hallway::new_w2().area,
             DormRoom::new_w2().area,
             DormOffice::new().area,
-            CampusSquare::new().area
+            CampusSquare::new().area,
+            SchoolAuditorium::new().area
             ],
             scenes_completed: [true, true, false, false],
             movement: true,

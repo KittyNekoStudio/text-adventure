@@ -64,6 +64,7 @@ pub fn get_area(area_type: &String) -> usize {
         "west 2 hallway" => 9,
         "office" => 11,
         "campus square" => 12,
+        "auditorium" => 13,
         _ => 0
     }
 }
