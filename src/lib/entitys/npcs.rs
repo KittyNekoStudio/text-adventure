@@ -13,7 +13,8 @@ impl NPC {
     pub fn new() -> Self {
         Self {
             entity: Entity {
-                stats: (0, 0, 0, 0, 0),
+                spells: vec![],
+                spell_circle: vec![],
                 inventory: vec![]
             },
             name: "".to_string(),

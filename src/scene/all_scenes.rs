@@ -53,3 +53,33 @@ pub fn third_scene() {
     println!("Knowing so little doesn't happen often anymore.");
     println!("It's making you feel a little antsty.");
 }
+/// The scene in the auditorium.
+pub fn fourth_scene() {
+    println!("");
+    println!("You sit down in your seat when the headmaster begins the ceremony.");
+    println!("The headmaster starts his speach. \"Thank you all for coming today.\"");
+    println!("\"We are here to send of this years seniors. It allways fills me with pride to see how far are students have come.\"");
+    println!("\"I don't want to drag on to much as the seniors have a busy day today.\"");
+    println!("\"Let's call up our first student, Amy Jones!\"");
+    println!("With the call of the first student the ceremony begins.");
+    println!("It didn't take long for you to here the shout of \"Adam See!\"");
+    println!("You get out of your seat and make your way to the stage.");
+    println!("");
+}
+/// The scene on the stage.
+pub fn fifth_scene() {
+    println!("");
+    println!("As you climb the stairs you think of your future.");
+    println!("What does the government want from you?");
+    println!("As you are lost in though you get interupted by the headmaster.");
+    println!("\"Here is Adam See one of our strongest graduates this year.\"");
+    println!("\"Adam please come and shake the professors hands.\"");
+    println!("You go down the line shaking your teacher hands until you reach the headmaster.");
+    println!("\"Adam I look forward to what you accomplish in the future.\"");
+    println!("\"Here is your scroll of recognition.\"");
+    println!("He hands you your scroll.");
+    println!("\"Now please make your way back to the seats.\"");
+    println!("You leave the stage with your thoughts still on the meeting later today.");
+    println!("");
+
+}

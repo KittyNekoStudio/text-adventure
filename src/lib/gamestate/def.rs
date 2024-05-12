@@ -1,13 +1,13 @@
 use colored::Colorize;
 
-use crate::{area::{all_rooms::{Bathroom, CampusSquare, DormOffice, DormRoom, FirstRoom, Hallway, SchoolAuditorium, SchoolDorm}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, dialogue::print_dialogue, npc_interaction::npc_interaction, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}};
+use crate::{area::{all_rooms::{Bathroom, CampusSquare, DormOffice, DormRoom, FirstRoom, Hallway, SchoolAuditorium, SchoolAuditoriumSeat, SchoolDorm, SchoolStage}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, dialogue::print_dialogue, npc_interaction::npc_interaction, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}};
 #[derive(Debug, Clone, PartialEq)]
 pub struct GameState {
     pub history: History,
     pub current_area: Area,
     pub previous_area: Area,
-    pub all_areas: [Area; 14],
-    pub scenes_completed: [bool; 4],
+    pub all_areas: [Area; 16],
+    pub scenes_completed: [bool; 6],
     pub movement: bool,
     pub store: bool,
     pub player: PlayerCharacter,
@@ -34,9 +34,11 @@ impl GameState {
             DormRoom::new_w2().area,
             DormOffice::new().area,
             CampusSquare::new().area,
-            SchoolAuditorium::new().area
+            SchoolAuditorium::new().area,
+            SchoolStage::new().area,
+            SchoolAuditoriumSeat::new().area
             ],
-            scenes_completed: [true, true, false, false],
+            scenes_completed: [true, true, false, false, false, false],
             movement: true,
             store: true,
             player: PlayerCharacter::new()
@@ -208,6 +210,7 @@ impl GameState {
         std::process::exit(0);
     } else {
         if item_interaction == 0 {return true;}
+        if item_interaction == 3 {return true;}
         println!("");
         println!("Nothing matches with what you typed.");
         return true;
@@ -253,5 +256,21 @@ impl GameState {
         campus_square.area.room.times_entered = 1;
         if self.current_area == campus_square.area {return true}
         else {return false}
+    }
+    /// Check if fourth scene can be played.
+    pub fn fourth_check(&self) -> bool {
+        let mut seat = SchoolAuditoriumSeat::new();
+        seat.area.room.times_entered = 1;
+        if self.current_area == seat.area {return true}
+        else {return false}
+    }
+    /// Check if fifth scene can be played.
+    pub fn fifth_check(&self) -> bool {
+        let mut stage = self.all_areas[14].clone();
+        stage.room.times_entered += 1;
+        if self.scenes_completed[4] && self.current_area == stage {
+            return true;
+        } 
+        return false;
     }
 }

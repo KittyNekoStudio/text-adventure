@@ -1,3 +1,27 @@
+May 12 2024
+Added:
+ spells.rs
+
+ spell_circle to Entity
+ 
+ get_spell_lore()
+ print_spell()
+
+ get_circle_lore()
+ print_circle()
+
+ Stage struct
+
+ Seat struct
+
+ fourth_scene()
+
+ interact_with_item()
+
+ fifth_scene()
+Removed:
+ stats from Entity
+-----------------------------------------------------------------------------------------
 May 9 2024
 Added:
  more flavor text to search text

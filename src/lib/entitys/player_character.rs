@@ -13,7 +13,11 @@ pub struct PlayerCharacter {
 impl PlayerCharacter {
     pub fn new() -> Self {
         PlayerCharacter {
-            entity: Entity::new(),
+            entity: Entity {
+                spells: vec![0, 1, 2, 3, 4, 5, 6],
+                spell_circle: vec![0, 1],
+                inventory: vec![]
+            },
             first_name: String::from("Adam"),
             last_name: String::from("See"),
             combat_magic: MagicType::Fire,

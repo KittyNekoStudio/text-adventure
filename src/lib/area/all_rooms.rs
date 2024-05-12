@@ -296,8 +296,55 @@ impl SchoolAuditorium {
                 collectable_item: vec![],
                 interactable_items: vec![],
                 main_area_name: "campus square".to_string(),
-                sub_area_names: vec![],
+                sub_area_names: vec!["stage".to_string(), "seat".to_string()],
                 lore: 13,
+                times_entered: 0
+                }
+            }
+        }
+    }
+}
+/// Struct for the school auditorium stage.
+#[derive(Debug, Clone, PartialEq)]
+pub struct SchoolStage {
+    pub area: Area
+}
+
+impl SchoolStage {
+    pub fn new() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                entitys: vec![],
+                collectable_item: vec![],
+                interactable_items: vec![],
+                main_area_name: "auditorium".to_string(),
+                sub_area_names: vec![],
+                lore: 14,
+                times_entered: 0
+                }
+            }
+        }
+    }
+}
+
+/// Struct for the school auditorium seat.
+#[derive(Debug, Clone, PartialEq)]
+pub struct SchoolAuditoriumSeat {
+    pub area: Area
+}
+
+impl SchoolAuditoriumSeat {
+    pub fn new() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                entitys: vec![],
+                collectable_item: vec![],
+                interactable_items: vec![],
+                main_area_name: "auditorium".to_string(),
+                sub_area_names: vec![],
+                lore: 15,
                 times_entered: 0
                 }
             }

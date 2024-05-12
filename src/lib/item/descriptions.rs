@@ -51,11 +51,15 @@ pub fn get_room_lore(index1: usize, index2: usize) -> String {
         // 12
     ["Campus Square".bold(), "The center of the campus.".into()],
         // 13
-    ["School Auditorium".bold(), "An auditorium used for speeches and announcements.".into()]
+    ["School Auditorium".bold(), "An auditorium used for speeches and announcements.".into()],
+        // 14
+    ["Stage".bold(), "A stage in the school auditorium".into()],
+        // 15
+    ["Seat".bold(), "A seat in the school auditorium".into()]
     ];
     room_lore[index1][index2].to_string()
 }
-
+/// Get more information of a room.
 pub fn get_search_lore(index: usize) -> String {
     let search_lore = [
         // TODO! find a better way to concat strings
@@ -100,7 +104,12 @@ pub fn get_search_lore(index: usize) -> String {
             // 13
         [format!("All students and faculty are gathered here. Parents have shown up as well. 
 {} 
-{}", "There is a stage up front covered by a curtain,", "with rows upon rows of seats in front of the stage.")]
+{} {} {} {}{}", "There is a stage up front covered by a curtain,", "with rows upon rows of", "seats".bold(), "in front of the", "stage".bold(), ".")],
+            // 14
+        [format!("On the stage is the headmaster giving the scrolls, faculty are standing behind the headmaster.
+{} {}{}", "Walk down the stairs to go back to the", "auditorium".bold(), ".")],
+            // 15
+        [format!("It's just a seat in an auditorium. The only special feature of the seat is it's cleanliness.")]
     ];
     search_lore[index][0].to_string()
 }

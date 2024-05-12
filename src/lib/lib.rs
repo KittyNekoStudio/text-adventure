@@ -5,3 +5,4 @@ pub mod entitys;
 pub mod history;
 pub mod gamestate;
 pub mod area;
+pub mod spells;

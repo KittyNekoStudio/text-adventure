@@ -65,6 +65,8 @@ pub fn get_area(area_type: &String) -> usize {
         "office" => 11,
         "campus square" => 12,
         "auditorium" => 13,
+        "stage" => 14,
+        "seat" => 15,
         _ => 0
     }
 }
