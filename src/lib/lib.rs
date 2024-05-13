@@ -6,3 +6,4 @@ pub mod history;
 pub mod gamestate;
 pub mod area;
 pub mod spells;
+pub mod all_scenes;

@@ -1,3 +1,16 @@
+May 13 2024
+Fixed:
+ when you start the game you can pickup the robe
+ then re-enter the bathroom and pickup the robe again
+
+ scenes now print before room text
+
+Added:
+ SchoolEntrance struct
+
+Moved:
+ all_scenes.rs to lib
+-----------------------------------------------------------------------------------------
 May 12 2024
 Added:
  spells.rs

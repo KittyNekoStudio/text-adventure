@@ -1,12 +1,14 @@
 use colored::Colorize;
 
-use crate::{area::{all_rooms::{Bathroom, CampusSquare, DormOffice, DormRoom, FirstRoom, Hallway, SchoolAuditorium, SchoolAuditoriumSeat, SchoolDorm, SchoolStage}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, dialogue::print_dialogue, npc_interaction::npc_interaction, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}};
+use crate::{all_scenes::all_scenes::{fifth_scene, fourth_scene, second_scene, third_scene}, area::{all_rooms::{Bathroom, CampusSquare, DormOffice, DormRoom, FirstRoom, Hallway, SchoolAuditorium, SchoolAuditoriumSeat, SchoolDorm, SchoolEntrance, SchoolStage}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, dialogue::print_dialogue, npc_interaction::npc_interaction, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}};
+
+/// The struct that holds the gamestate.
 #[derive(Debug, Clone, PartialEq)]
 pub struct GameState {
     pub history: History,
     pub current_area: Area,
     pub previous_area: Area,
-    pub all_areas: [Area; 16],
+    pub all_areas: [Area; 17],
     pub scenes_completed: [bool; 6],
     pub movement: bool,
     pub store: bool,
@@ -16,7 +18,7 @@ pub struct GameState {
 impl GameState {
     pub fn new() -> Self {
         Self {
-            history: vec!["hi".to_string()],
+            history: vec![],
             current_area: Bathroom::new().area,
             // TODO! change this to a gloal variable
             previous_area: Area::new(),
@@ -36,7 +38,8 @@ impl GameState {
             CampusSquare::new().area,
             SchoolAuditorium::new().area,
             SchoolStage::new().area,
-            SchoolAuditoriumSeat::new().area
+            SchoolAuditoriumSeat::new().area,
+            SchoolEntrance::new().area
             ],
             scenes_completed: [true, true, false, false, false, false],
             movement: true,
@@ -177,6 +180,7 @@ impl GameState {
         self.push_movement(&input);
         move_to_room(self);
         self.add_entered();
+        self.scene_check();
         self.print_room();
         self.update_area();
         return true;
@@ -219,6 +223,38 @@ impl GameState {
 }
 // In a different block for readability.
 impl GameState {
+    /// Combine all checks into one method.
+pub fn scene_check(&mut self) {
+    if !self.scenes_completed[2] {
+        if self.second_check() {
+            second_scene();
+            self.complete_scene(2);
+        }
+    } else if !self.scenes_completed[3] {
+        if self.third_check() {
+            third_scene();
+            self.complete_scene(3);
+        }
+    } else if !self.scenes_completed[4] {
+        if self.fourth_check() {
+            fourth_scene();
+            self.complete_scene(4);
+            self.update_area();
+            self.push_movement(&"auditorium".to_string());
+            move_to_room(self);
+            self.add_entered();
+        }
+    } else if !self.scenes_completed[5] {
+        if self.fifth_check() {
+            fifth_scene();
+            self.complete_scene(5);
+            self.update_area();
+            self.push_movement(&"auditorium".to_string());
+            move_to_room(self);
+            self.add_entered();
+        }
+    }
+}
     /// Check if second scene can be played.
     pub fn second_check(&self) -> bool {
         let mut hallway = Hallway::new_e1();

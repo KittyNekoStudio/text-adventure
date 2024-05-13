@@ -1,5 +1,5 @@
 mod test;
-mod scene; 
+mod scene;
 fn main() {
     scene::play_game::play_game();
 }

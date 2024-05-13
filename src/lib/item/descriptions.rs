@@ -12,7 +12,11 @@ pub fn get_item_lore(index1: usize, index2: usize) -> String {
         // 3
     ["Your Bed".bold(), "The place you slept in for the past 6 years. That changes today.".into()],
         // 4
-    ["Mirror".bold(), "It refects your beautiful face.".into()],
+    ["Mirror".bold(), "You look into the mirror and see.
+A man with short well kept brown hair.
+With bright blue eyes and a clean shaven face.
+He's not tall nor short looking average.
+His most stiking feature is the mysterious look in his eyes.".into()],
         // 5
     ["Dorm Map".bold(), format!("{} {} {} {} {} {} {} {}", "West 1".bold(), "and", "West 2".bold(), "for the left hallways.",
 "East 1".bold(), "and", "East 2".bold(), "for the right hallways.").into()],
@@ -55,7 +59,9 @@ pub fn get_room_lore(index1: usize, index2: usize) -> String {
         // 14
     ["Stage".bold(), "A stage in the school auditorium".into()],
         // 15
-    ["Seat".bold(), "A seat in the school auditorium".into()]
+    ["Seat".bold(), "A seat in the school auditorium".into()],
+        // 16
+    ["School Entrance".bold(), "The entrance to the school.".into()]
     ];
     room_lore[index1][index2].to_string()
 }
@@ -109,7 +115,11 @@ pub fn get_search_lore(index: usize) -> String {
         [format!("On the stage is the headmaster giving the scrolls, faculty are standing behind the headmaster.
 {} {}{}", "Walk down the stairs to go back to the", "auditorium".bold(), ".")],
             // 15
-        [format!("It's just a seat in an auditorium. The only special feature of the seat is it's cleanliness.")]
+        [format!("It's just a seat in an auditorium. The only special feature of the seat is it's cleanliness.")],
+            // 16
+        [format!("The entrance is filled with people. They are coming in an out of the {}{}
+{} {} {}
+{} {}{}", "gate".bold(), ".", "There is a", "receptionist".bold(), "on the left side.", "On the right is a singing", "trash can".bold(), ".")]
     ];
     search_lore[index][0].to_string()
 }

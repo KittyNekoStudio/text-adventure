@@ -351,3 +351,27 @@ impl SchoolAuditoriumSeat {
         }
     }
 }
+
+/// Struct for the school entrance.
+#[derive(Debug, Clone, PartialEq)]
+pub struct SchoolEntrance {
+    pub area: Area
+}
+
+impl SchoolEntrance {
+    pub fn new() -> Self {
+        Self {
+            area: Area {
+                room: Room {
+                    entitys: vec![],
+                    collectable_item: vec![],
+                    interactable_items: vec![],
+                    main_area_name: "campus square".to_string(),
+                    sub_area_names: vec![],
+                    lore: 16,
+                    times_entered: 0
+                }
+            }
+        }
+    }
+}

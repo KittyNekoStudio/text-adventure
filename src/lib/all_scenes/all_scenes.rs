@@ -1,4 +1,5 @@
-use lib::def::recive_input;
+use crate::def::recive_input;
+
 
 /// The start scene that gives some information to the player.
 pub fn start_up_scene() {
@@ -30,10 +31,10 @@ pub fn first_scene() {
     println!("As you enter the bathroom to get ready for the day you pass by your reflection and see.");
     println!("A skinny man with well kept hair and a clean shaven face.");
     println!("His clothes look well ironed, and he seems to take care of his apperence.");
+    println!("");
 }
 /// The scene in the hallway.
 pub fn second_scene() {
-    println!("");
     println!("As you leave your room you think of what today means.");
     println!("Today you graduate.");
     println!("Today you leave the safety of the campus and go out into the real world.");
@@ -41,21 +42,21 @@ pub fn second_scene() {
     println!("But you never fully know.");
     println!("Things can go against even your predictions.");
     println!("Although that happens less and less lately.");
+    println!("");
 }
 
 /// The scene in the campus square.
 pub fn third_scene() {
-    println!("");
     println!("For the past weeks when you have been divining this day.");
     println!("All you could see was that great change was coming to your life.");
     println!("Which isn't helpful because obviously change will come.");
     println!("As the life you had lived for the past 6 years comes to an end today.");
     println!("Knowing so little doesn't happen often anymore.");
     println!("It's making you feel a little antsty.");
+    println!("");
 }
 /// The scene in the auditorium.
 pub fn fourth_scene() {
-    println!("");
     println!("You sit down in your seat when the headmaster begins the ceremony.");
     println!("The headmaster starts his speach. \"Thank you all for coming today.\"");
     println!("\"We are here to send of this years seniors. It allways fills me with pride to see how far are students have come.\"");
@@ -68,7 +69,6 @@ pub fn fourth_scene() {
 }
 /// The scene on the stage.
 pub fn fifth_scene() {
-    println!("");
     println!("As you climb the stairs you think of your future.");
     println!("What does the government want from you?");
     println!("As you are lost in though you get interupted by the headmaster.");
