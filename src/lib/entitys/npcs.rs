@@ -15,7 +15,8 @@ impl NPC {
             entity: Entity {
                 spells: vec![],
                 spell_circle: vec![],
-                inventory: vec![]
+                inventory: vec![],
+                mana: 0
             },
             name: "".to_string(),
             dialogue: vec![],

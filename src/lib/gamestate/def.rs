@@ -1,6 +1,6 @@
 use colored::Colorize;
 
-use crate::{all_scenes::all_scenes::{fifth_scene, fourth_scene, second_scene, third_scene}, area::{all_rooms::{Bathroom, CampusSquare, DormOffice, DormRoom, FirstRoom, Hallway, SchoolAuditorium, SchoolAuditoriumSeat, SchoolDorm, SchoolEntrance, SchoolStage}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, dialogue::print_dialogue, npc_interaction::npc_interaction, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}};
+use crate::{all_scenes::all_scenes::{fifth_scene, fourth_scene, second_scene, third_scene}, area::{all_rooms::{Bathroom, CampusSquare, DormOffice, DormRoom, FirstRoom, Hallway, SchoolAuditorium, SchoolAuditoriumSeat, SchoolDorm, SchoolEntrance, SchoolStage}, def::Area}, def::recive_input, entitys::{def::{check_entity_field, match_entity_field}, dialogue::print_dialogue, npc_interaction::npc_interaction, player_character::PlayerCharacter}, history::{history::History, movement::{check_room, get_area, move_to_room}}, item::{descriptions::{get_room_lore, get_search_lore}, item_interaction::item_interaction}, spells::cast_spell::{check_spell, print_spell_information}};
 
 /// The struct that holds the gamestate.
 #[derive(Debug, Clone, PartialEq)]
@@ -183,6 +183,10 @@ impl GameState {
         self.scene_check();
         self.print_room();
         self.update_area();
+        return true;
+    } else if check_spell(&input) {
+        println!("");
+        println!("{}", print_spell_information(&input, &self));
         return true;
     } else if check_entity_field(&input) {
         println!("");

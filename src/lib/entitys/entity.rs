@@ -5,14 +5,16 @@ use crate::{item::def::{print_collectable, CollectableItem}, spells::spells::{pr
 pub struct Entity {
     pub spells: Vec<usize>,
     pub spell_circle: Vec<usize>,
-    pub inventory: Vec<CollectableItem>
+    pub inventory: Vec<CollectableItem>,
+    pub mana: usize
 }
 impl Entity {
     pub fn new() -> Self {
         Self {
             spells: vec![],
             spell_circle: vec![],
-            inventory: vec![]
+            inventory: vec![],
+            mana: 0
         }
     }
     /// Prints entity.
@@ -27,6 +29,7 @@ impl Entity {
             3 => for circle in &self.spell_circle {
                 print_circle(&circle)
             },
+            4 => println!("{} mana", self.mana),
             _ => ()
         }
     }

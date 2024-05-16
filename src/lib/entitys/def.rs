@@ -4,12 +4,13 @@ pub fn match_entity_field(input: &String) -> usize {
         "spells" => 1,
         "inventory" => 2,
         "circles" => 3,
-        _ => 3
+        "mana" => 4,
+        _ => 0
     }
 }
-/// Checks which field you are looking for
+/// Checks which field you are looking for.
 pub fn check_entity_field(input: &String) -> bool {
-    let fields = ["spells", "inventory", "circles"];
+    let fields = ["spells", "inventory", "circles", "mana"];
     for i in fields {
         if input == i {
             return true;

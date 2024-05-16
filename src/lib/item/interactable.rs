@@ -1,8 +1,6 @@
 use super::def::InteractableItem;
 
 /// The mirror.
-// TODO! make it when you look into the mirror
-// it prints how the MC looks
 pub const MIRROR: InteractableItem = InteractableItem {
     lore: 4,
 };
