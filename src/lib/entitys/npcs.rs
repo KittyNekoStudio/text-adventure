@@ -6,7 +6,8 @@ pub struct NPC {
     pub entity: Entity,
     pub name: String,
     pub dialogue: Vec<String>,
-    pub talked_to: usize
+    pub talked_to: usize,
+    pub id: usize
 }
 
 impl NPC {
@@ -20,7 +21,8 @@ impl NPC {
             },
             name: "".to_string(),
             dialogue: vec![],
-            talked_to: 0
+            talked_to: 0,
+            id: 0
         }
     }
 }

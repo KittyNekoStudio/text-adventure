@@ -24,11 +24,19 @@ fn get_spell_information(input: &String, gamestate: &GameState) -> usize {
         "inspect object" => {
             println!("Choose an object to use spell on:");
             for object in &gamestate.current_area.room.interactable_items {
-                println!("{}", object.0)
+                println!("{}", object.0);
             }
+            println!("cancel");
             return 1;
         },
-        "inspect person" => return 2,
+        "inspect person" => {
+            println!("Choose an object to use spell on:");
+            for person in &gamestate.current_area.room.entitys {
+                println!("{}", person.name);
+            }
+            println!("cancel");
+            return 2;
+        },
         "enhanced insight" => return 3,
         "see into the past" => return 4,
         "danger sense" => return 5,
@@ -38,22 +46,48 @@ fn get_spell_information(input: &String, gamestate: &GameState) -> usize {
     }
 }
 
-fn get_object (input: &String, gamestate: &GameState) -> Option<usize> {
+fn get_spell (input: &String, gamestate: &GameState) -> (usize ,Option<usize>) {
     let spell = get_spell_information(input, gamestate);
     if spell == 1 {
         let spell_input = recive_input().to_lowercase();
+        if spell_input == "cancel" {
+            return (1, Some(0));
+        }
         for object in &gamestate.current_area.room.interactable_items {
             if spell_input == object.0 {
-                return Some(object.1.lore)
+                return (1, Some(object.1.lore))
             }
         }
+    } else if spell == 2 {
+        let spell_input = recive_input().to_lowercase();
+        if spell_input == "cancel" {
+            return (2, Some(0));
+        }
+        for person in &gamestate.current_area.room.entitys {
+            if spell_input == person.name {
+                return (2, Some(person.id))
+            }
+        }
+    } else if spell == 3 {
+        return (3, Some(1))
     }
-    return None
+    return (0, None)
 }
 
 pub fn print_spell_information(input: &String, gamestate: &GameState) -> String {
-    let object = get_object(input, gamestate).expect("Error spell information");
-    let index = match object {
+    let mut spell = get_spell(input, gamestate);
+    if spell.1 == None {
+    while spell.1 == None {
+        println!("");
+        println!("Invalid spell target.");
+        spell = get_spell(input, gamestate);
+        }
+    }
+    if spell.1.unwrap() == 0 {
+        return "Spell not used.".to_string();
+    }
+    if spell.0 == 1 { 
+        let index = match spell.1.expect("Error spell information") {
         4 => 0,
         3 => 1,
         5 => 2,
@@ -67,4 +101,14 @@ pub fn print_spell_information(input: &String, gamestate: &GameState) -> String 
         "This is another map.".to_string()
     ];
     return inspect_object[index].clone();
+    } else if spell.0 == 2 {
+        let inspect_person = [
+            "NPC Id starts at 1".to_string(),
+            "This is the dorm manager.".to_string()
+        ];
+        return inspect_person[spell.1.unwrap()].clone();
+    } else if spell.0 == 3 {
+        return "Spell not used on it's own.".to_string();
+    }
+    return "".to_string();
 }

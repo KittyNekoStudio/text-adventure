@@ -1,3 +1,8 @@
+May 18 2024
+Added:
+ inspect person implementation
+ enhanced insight implementation
+-----------------------------------------------------------------------------------------
 May 16 2024
 Added:
  the beginning of the spell system

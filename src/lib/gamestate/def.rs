@@ -186,7 +186,8 @@ impl GameState {
         return true;
     } else if check_spell(&input) {
         println!("");
-        println!("{}", print_spell_information(&input, &self));
+        println!("
+{}", print_spell_information(&input, &self));
         return true;
     } else if check_entity_field(&input) {
         println!("");

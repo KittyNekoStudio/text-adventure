@@ -33,7 +33,8 @@ pub fn create_dorm_manager() -> NPC {
         name: "manager".to_string(),
         dialogue: vec!["What are you doing here Adam? It't not like you to be late.
 Get to the auditorium before you miss the ceremony.".to_string(), "Why are you still here, get a move on.".to_string()],
-        talked_to: 0
+        talked_to: 0,
+        id: 1
     };
     
     return manager;
