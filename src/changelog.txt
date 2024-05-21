@@ -1,3 +1,12 @@
+May 20 2024
+Added:
+ beginning of see into the past spell
+
+Bugs:
+ the hallways are not working with the spell implementation
+ 
+ FirstRoom returns 0 which cancels spell
+-----------------------------------------------------------------------------------------
 May 18 2024
 Added:
  inspect person implementation

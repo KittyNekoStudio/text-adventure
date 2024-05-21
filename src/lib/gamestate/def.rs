@@ -121,7 +121,7 @@ impl GameState {
     }
     /// Prints the room lore.
     pub fn print_room(&self) {
-        println!("{}", get_room_lore(self.current_area.room.lore, 0));
+        println!("{}", get_room_lore(self.current_area.room.lore, 0).bold());
         println!("{}", get_room_lore(self.current_area.room.lore, 1));
     }
     /// Prints the clues a room has.

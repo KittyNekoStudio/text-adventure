@@ -29,39 +29,39 @@ His most stiking feature is the mysterious look in his eyes.".into()],
 pub fn get_room_lore(index1: usize, index2: usize) -> String {
     let room_lore = [
         // 0
-    ["Bedroom".bold(), "The dorm looks clean but empty. Seems like the owner isn't home often.".into()],
+    ["Bedroom", "The dorm looks clean but empty. Seems like the owner isn't home often."],
         // 1
-    ["Bathroom".bold(), "A small dorm bathroom.".into()],
+    ["Bathroom", "A small dorm bathroom."],
         // 2  
-    ["E1 Hallway".bold(), "The eastside 1 hallway that connects dorms together.".into()],
+    ["E1 Hallway", "The eastside 1 hallway that connects dorms together."],
         // 3
-    ["E1 Dorm Room".bold(), "Why are you in a strangers room, you freak.".into()],
+    ["E1 Dorm Room", "Why are you in a strangers room, you freak."],
         // 4
-    ["School Dorms".bold(), "The main hub to get to all the dorms.".into()],
+    ["School Dorms", "The main hub to get to all the dorms."],
         // 5
-    ["E2 Hallway".bold(), "The eastside 2 hallway that connects dorms together.".into()],
+    ["E2 Hallway", "The eastside 2 hallway that connects dorms together."],
         // 6
-    ["E2 Dorm Room".bold(), "Why are you in a strangers room, you freak.".into()],
+    ["E2 Dorm Room", "Why are you in a strangers room, you freak."],
         // 7
-    ["W1 Hallway".bold(), "The westside 1 hallway that connects dorms together.".into()],
+    ["W1 Hallway", "The westside 1 hallway that connects dorms together."],
         // 8
-    ["W1 Dorm Room".bold(), "Why are you in a strangers room, you freak.".into()],
+    ["W1 Dorm Room", "Why are you in a strangers room, you freak."],
         // 9
-    ["W2 Hallway".bold(), "The westside 2 hallway that connects dorms together.".into()],
+    ["W2 Hallway", "The westside 2 hallway that connects dorms together."],
         // 10
-    ["W2 Dorm Room".bold(), "Why are you in a strangers room, you freak.".into()],
+    ["W2 Dorm Room", "Why are you in a strangers room, you freak."],
         // 11
-    ["Dorm Office".bold(), "An office for the dorm manager.".into()],
+    ["Dorm Office", "An office for the dorm manager."],
         // 12
-    ["Campus Square".bold(), "The center of the campus.".into()],
+    ["Campus Square", "The center of the campus."],
         // 13
-    ["School Auditorium".bold(), "An auditorium used for speeches and announcements.".into()],
+    ["School Auditorium", "An auditorium used for speeches and announcements."],
         // 14
-    ["Stage".bold(), "A stage in the school auditorium".into()],
+    ["Stage", "A stage in the school auditorium"],
         // 15
-    ["Seat".bold(), "A seat in the school auditorium".into()],
+    ["Seat", "A seat in the school auditorium"],
         // 16
-    ["School Entrance".bold(), "The entrance to the school.".into()]
+    ["School Entrance", "The entrance to the school."]
     ];
     room_lore[index1][index2].to_string()
 }
