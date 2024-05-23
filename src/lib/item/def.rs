@@ -20,7 +20,8 @@ pub struct CollectableItem {
 /// The struct that defines Interactable items.
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub struct InteractableItem {
-    pub lore: usize
+    pub item_lore: usize,
+    pub spell_lore: usize
 }
 /// An enum that defines the item type of a Collectable item.
 #[derive(Debug, PartialEq, Clone, Copy)]
@@ -32,8 +33,8 @@ pub enum ItemType {
 
 /// Prints Interactable item.
 pub fn print_interactable(item: InteractableItem) {
-    println!("{}", get_item_lore(item.lore, 0));
-    println!("{}", get_item_lore(item.lore, 1));
+    println!("{}", get_item_lore(item.item_lore, 0));
+    println!("{}", get_item_lore(item.item_lore, 1));
 }
 
 /// Prints Collectable item.

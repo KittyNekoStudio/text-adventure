@@ -1,3 +1,13 @@
+May 23 2024
+Added:
+ the spell text for see into the past
+
+ wispers of the touch spell implementation
+Fixed:
+ hallways not working with see into the past
+
+ FirstRoom cancels spell
+-----------------------------------------------------------------------------------------
 May 20 2024
 Added:
  beginning of see into the past spell
