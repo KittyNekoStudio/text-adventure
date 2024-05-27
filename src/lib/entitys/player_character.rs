@@ -17,7 +17,7 @@ impl PlayerCharacter {
                 spells: vec![0, 1, 2, 3, 4, 5, 6],
                 spell_circle: vec![0, 1],
                 inventory: vec![],
-                mana: 0
+                mana: 50
             },
             first_name: String::from("Adam"),
             last_name: String::from("See"),

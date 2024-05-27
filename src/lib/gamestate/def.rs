@@ -183,11 +183,11 @@ impl GameState {
         self.scene_check();
         self.print_room();
         self.update_area();
+        self.player.entity.add_mana(1);
         return true;
     } else if check_spell(&input) {
         println!("");
-        println!("
-{}", print_spell_information(&input, &self));
+        println!("{}", print_spell_information(&input, self));
         return true;
     } else if check_entity_field(&input) {
         println!("");

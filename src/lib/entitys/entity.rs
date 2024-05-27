@@ -37,4 +37,15 @@ impl Entity {
     pub fn add_spell(&mut self, spell: usize) {
         self.spells.push(spell)
     }
+    /// Adds mana
+    pub fn add_mana(&mut self, mana: usize) {
+        if self.mana == 50 {
+            return;
+        }
+        self.mana += mana
+    }
+    /// Removes mana.
+    pub fn sub_mana(&mut self, cost: usize) {
+        self.mana -= cost
+    }
 }

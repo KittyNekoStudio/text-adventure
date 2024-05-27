@@ -21,6 +21,9 @@ pub fn check_spell(input: &String) -> bool {
 fn get_spell_information(input: &String, gamestate: &GameState) -> usize {
     match input.as_str() {
         "inspect object" => {
+            if gamestate.player.entity.mana < 2 {
+                return 100;
+            }
             println!("Choose an object to use spell on:");
             for object in &gamestate.current_area.room.interactable_items {
                 println!("{}", object.0);
@@ -29,6 +32,9 @@ fn get_spell_information(input: &String, gamestate: &GameState) -> usize {
             return 1;
         },
         "inspect person" => {
+            if gamestate.player.entity.mana < 2 {
+                return 100;
+            }
             println!("Choose an object to use spell on:");
             for person in &gamestate.current_area.room.entitys {
                 println!("{}", person.name);
@@ -38,6 +44,9 @@ fn get_spell_information(input: &String, gamestate: &GameState) -> usize {
         },
         "enhanced insight" => return 3,
         "see into the past" => {
+            if gamestate.player.entity.mana < 5 {
+                return 100;
+            }
             println!("Choose spell target:");
             println!("{}", get_room_lore(gamestate.current_area.room.lore, 0).to_lowercase());
             for object in &gamestate.current_area.room.interactable_items {
@@ -48,6 +57,9 @@ fn get_spell_information(input: &String, gamestate: &GameState) -> usize {
         },
         "danger sense" => return 5,
         "wispers of the touch" => {
+            if gamestate.player.entity.mana < 3 {
+                return 100;
+            }
             println!("Choose an object to use spell on:");
             for object in &gamestate.current_area.room.interactable_items {
                 println!("{}", object.0);
@@ -55,14 +67,26 @@ fn get_spell_information(input: &String, gamestate: &GameState) -> usize {
             println!("cancel");
             return 6;
         },
-        "hear the voices" => return 7,
+        "hear the voices" => {
+            if gamestate.player.entity.mana < 5 {
+                return 100;
+            }
+            println!("Choose an object to use spell on:");
+            for object in &gamestate.current_area.room.interactable_items {
+                println!("{}", object.0);
+            }
+            println!("cancel");
+            return 7;
+        },
         _ => return 0
     }
 }
 
-fn get_spell (input: &String, gamestate: &GameState) -> (usize ,Option<usize>) {
+fn get_spell (input: &String, gamestate: &GameState) -> (usize, Option<usize>) {
     let spell = get_spell_information(input, gamestate);
-    if spell == 1 || spell == 6 {
+    if spell == 100 {
+        return (100, Some(100));
+    } else if spell == 1 || spell == 6 || spell == 7 {
         let spell_input = recive_input().to_lowercase();
         if spell_input == "cancel" {
             return (1, Some(100));
@@ -71,8 +95,10 @@ fn get_spell (input: &String, gamestate: &GameState) -> (usize ,Option<usize>) {
             if spell_input == object.0 {
                 if spell == 1 {
                     return (1, Some(object.1.item_lore));
-                } else {
+                } else if spell == 6 {
                     return (6, Some(object.1.item_lore));
+                } else {
+                    return (7, Some(object.1.item_lore));
                 }
             }
         }
@@ -107,8 +133,12 @@ fn get_spell (input: &String, gamestate: &GameState) -> (usize ,Option<usize>) {
     return (0, None)
 }
 
-pub fn print_spell_information(input: &String, gamestate: &GameState) -> String {
+pub fn print_spell_information(input: &String, gamestate: &mut GameState) -> String {
+    let mut index = 100;
     let mut spell = get_spell(input, gamestate);
+    if spell.0 == 100 {
+        return "Not enough mana".to_string();
+    }
     if spell.1 == None {
     while spell.1 == None {
         println!("");
@@ -119,14 +149,15 @@ pub fn print_spell_information(input: &String, gamestate: &GameState) -> String 
     if spell.1.unwrap() == 100 {
         return "Spell not used.".to_string();
     }
-    if spell.0 == 1 || spell.0 == 6 { 
-        let index = match spell.1.expect("Error spell information") {
+    if spell.0 == 1 || spell.0 == 6 || spell.0 == 7 { 
+        index = match spell.1.expect("Error spell information") {
         4 => 0,
         3 => 1,
         5 => 2,
         6 => 3,
         _ => 100
     };
+    }
     if spell.0 == 1 {
     let inspect_object = [
         // 0
@@ -138,25 +169,14 @@ pub fn print_spell_information(input: &String, gamestate: &GameState) -> String 
         // 3
     "This is another map.".to_string()
     ];
+    gamestate.player.entity.sub_mana(2);
     return inspect_object[index].clone();
-    } else {
-    let wispers_of_the_touch = [
-        // 0
-    "Adam See, Jacob, Hall.".to_string(),
-        // 1
-    "Adam See, John Brunt, Jess Smith, Casey, Cross.".to_string(),
-        // 2
-    "Put names here 1.".to_string(),
-        // 3
-    "Put names here 2.".to_string()
-    ];
-    return wispers_of_the_touch[index].clone();
-    }
     } else if spell.0 == 2 {
         let inspect_person = [
             "NPC Id starts at 1".to_string(),
             "This is the dorm manager.".to_string()
         ];
+        gamestate.player.entity.sub_mana(2);
         return inspect_person[spell.1.unwrap()].clone();
     } else if spell.0 == 3 {
         return "Spell not used on it's own.".to_string();
@@ -206,9 +226,36 @@ pub fn print_spell_information(input: &String, gamestate: &GameState) -> String 
                 // 20
             "You see people coming up and looking at the map.".to_string(),
         ];
+        gamestate.player.entity.sub_mana(5);
         return see_into_the_past[spell.1.unwrap()].clone();
     } else if spell.0 == 5 {
         return "Find a way to use this spell. If I can't remove it.".to_string();
+    } else if spell.0 == 6 {
+        let wispers_of_the_touch = [
+            // 0
+        "Adam See, Jacob, Hall.".to_string(),
+            // 1
+        "Adam See, John Brunt, Jess Smith, Casey, Cross.".to_string(),
+            // 2
+        "Put names here 1.".to_string(),
+            // 3
+        "Put names here 2.".to_string()
+        ];
+        gamestate.player.entity.sub_mana(3);
+        return wispers_of_the_touch[index].clone();
+    } else if spell.0 == 7 {
+        let hear_the_voices = [
+            // 0
+        "\"Uhg\"".to_string(),
+            // 1
+        "\"Grunting noises.\"".to_string(),
+            // 2
+        "\"Loud chatter from many people.\"".to_string(),
+            // 3
+        "\"Talking and footsteps are loud here.\"".to_string()
+        ];
+        gamestate.player.entity.sub_mana(5);
+        return hear_the_voices[index].clone();
     }
     return "".to_string();
 }

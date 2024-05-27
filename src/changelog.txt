@@ -1,3 +1,11 @@
+May 26 2024
+Added:
+ hear the voices spell implementation
+
+ the start of the mana system
+ add_mana()
+ sub_mana()
+-----------------------------------------------------------------------------------------
 May 23 2024
 Added:
  the spell text for see into the past
