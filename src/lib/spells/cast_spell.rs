@@ -155,6 +155,7 @@ pub fn print_spell_information(input: &String, gamestate: &mut GameState) -> Str
         3 => 1,
         5 => 2,
         6 => 3,
+        7 => 4,
         _ => 100
     };
     }
@@ -167,14 +168,17 @@ pub fn print_spell_information(input: &String, gamestate: &mut GameState) -> Str
         // 2
     "This is a map.".to_string(),
         // 3
-    "This is another map.".to_string()
+    "This is another map.".to_string(),
+        // 4
+    "This is a trash can.".to_string()
     ];
     gamestate.player.entity.sub_mana(2);
     return inspect_object[index].clone();
     } else if spell.0 == 2 {
         let inspect_person = [
             "NPC Id starts at 1".to_string(),
-            "This is the dorm manager.".to_string()
+            "This is the dorm manager.".to_string(),
+            "This is the receptionist for the entrance of the school.".to_string()
         ];
         gamestate.player.entity.sub_mana(2);
         return inspect_person[spell.1.unwrap()].clone();
@@ -225,6 +229,8 @@ pub fn print_spell_information(input: &String, gamestate: &mut GameState) -> Str
             "You see people passing by the map.".to_string(),
                 // 20
             "You see people coming up and looking at the map.".to_string(),
+                // 21
+            "People are throwing things into the trash.".to_string()
         ];
         gamestate.player.entity.sub_mana(5);
         return see_into_the_past[spell.1.unwrap()].clone();
@@ -239,7 +245,9 @@ pub fn print_spell_information(input: &String, gamestate: &mut GameState) -> Str
             // 2
         "Put names here 1.".to_string(),
             // 3
-        "Put names here 2.".to_string()
+        "Put names here 2.".to_string(),
+            // 4
+        "Put names here 3.".to_string()
         ];
         gamestate.player.entity.sub_mana(3);
         return wispers_of_the_touch[index].clone();
@@ -252,7 +260,9 @@ pub fn print_spell_information(input: &String, gamestate: &mut GameState) -> Str
             // 2
         "\"Loud chatter from many people.\"".to_string(),
             // 3
-        "\"Talking and footsteps are loud here.\"".to_string()
+        "\"Talking and footsteps are loud here.\"".to_string(),
+            // 4
+        "\"The sounds of crumpling and squishing are heard here.\"".to_string()
         ];
         gamestate.player.entity.sub_mana(5);
         return hear_the_voices[index].clone();

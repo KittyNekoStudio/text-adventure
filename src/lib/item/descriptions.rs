@@ -21,7 +21,9 @@ His most stiking feature is the mysterious look in his eyes.".into()],
     ["Dorm Map".bold(), format!("{} {} {} {} {} {} {} {}", "West 1".bold(), "and", "West 2".bold(), "for the left hallways.",
 "East 1".bold(), "and", "East 2".bold(), "for the right hallways.").into()],
         // 6
-    ["School map".bold(), format!("To the north is the {}{} {} {}{} {} {}{}", "school entrance".bold(), ",", "to the south is the", "school dorms".bold(), ",", "to the west is the", "auditorium".bold(), ".").into()]
+    ["School Map".bold(), format!("To the north is the {}{} {} {}{} {} {}{}", "school entrance".bold(), ",", "to the south is the", "school dorms".bold(), ",", "to the west is the", "auditorium".bold(), ".").into()],
+        // 7
+    ["Trash Can".bold(), format!("This trash can is full of trash.").into()]
     ];
     item_lore[index1][index2].to_string()
 }

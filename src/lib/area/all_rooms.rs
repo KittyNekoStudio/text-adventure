@@ -1,4 +1,4 @@
-use crate::{entitys::create_entity::create_dorm_manager, item::def::{EVERYCOLITEM, EVERYINTITEM}};
+use crate::{entitys::create_entity::{create_dorm_manager, create_school_receptionist}, item::def::{EVERYCOLITEM, EVERYINTITEM}};
 
 use super::def::{Area, Room};
 
@@ -363,9 +363,9 @@ impl SchoolEntrance {
         Self {
             area: Area {
                 room: Room {
-                    entitys: vec![],
+                    entitys: vec![create_school_receptionist()],
                     collectable_item: vec![],
-                    interactable_items: vec![],
+                    interactable_items: vec![("trash can".to_string(), EVERYINTITEM[4])],
                     main_area_name: "campus square".to_string(),
                     sub_area_names: vec![],
                     lore: 16,

@@ -142,7 +142,6 @@ impl GameState {
             );
         self.current_area.room.
         add_talked_to(
-            
             self.get_npc_index(&input)
             .expect("Npc dialogue error 2")
         );

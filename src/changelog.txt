@@ -1,3 +1,9 @@
+May 29 2024
+Added:
+ school receptionist
+
+ trash can
+-----------------------------------------------------------------------------------------
 May 26 2024
 Added:
  hear the voices spell implementation

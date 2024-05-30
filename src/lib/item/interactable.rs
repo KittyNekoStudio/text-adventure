@@ -15,8 +15,13 @@ pub const DORMMAP: InteractableItem = InteractableItem {
     item_lore: 5,
     spell_lore: 19
 };
-// Map of the school.
+/// Map of the school.
 pub const CAMPUSSQUAREMAP: InteractableItem = InteractableItem {
     item_lore: 6,
     spell_lore: 20
+};
+/// Trash can at school entrance
+pub const SCHOOLTRASHCAN: InteractableItem = InteractableItem {
+    item_lore: 7,
+    spell_lore: 21
 };
