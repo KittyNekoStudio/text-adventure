@@ -1,3 +1,7 @@
+June 2 2024
+Added:
+ day counter to GameState
+-----------------------------------------------------------------------------------------
 May 29 2024
 Added:
  school receptionist

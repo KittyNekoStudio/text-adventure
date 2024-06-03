@@ -8,6 +8,7 @@ pub struct GameState {
     pub history: History,
     pub current_area: Area,
     pub previous_area: Area,
+    pub day: i32,
     pub all_areas: [Area; 17],
     pub scenes_completed: [bool; 6],
     pub movement: bool,
@@ -22,6 +23,7 @@ impl GameState {
             current_area: Bathroom::new().area,
             // TODO! change this to a gloal variable
             previous_area: Area::new(),
+            day: 1,
             all_areas: [
             FirstRoom::new().area,
             Bathroom::new().area,
@@ -77,6 +79,11 @@ impl GameState {
             self.history.push(room.to_string());
         }
         self
+    }
+    /// Increments the day by one.
+    pub fn add_day(&mut self) {
+        self.day += 1;
+        self.player.entity.add_mana(50);
     }
     /// Previous area becomes current area before swtiching to a new area.
     pub fn push_prev_area(&mut self) -> &Self {
@@ -170,6 +177,10 @@ impl GameState {
         println!("The bathroom is locked.");
         return true;
     }
+    if input == "rest" {
+        self.add_day();
+        return true;
+    }
     if input == "search" {
         println!("");
         self.print_search();
@@ -182,7 +193,6 @@ impl GameState {
         self.scene_check();
         self.print_room();
         self.update_area();
-        self.player.entity.add_mana(1);
         return true;
     } else if check_spell(&input) {
         println!("");

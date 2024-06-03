@@ -38,11 +38,14 @@ impl Entity {
         self.spells.push(spell)
     }
     /// Adds mana
-    pub fn add_mana(&mut self, mana: usize) {
-        if self.mana == 50 {
-            return;
+    pub fn add_mana(&mut self, mut mana: usize) {
+        while mana > 0 {
+            if self.mana == 50 {
+                return;
+            }
+            self.mana += 1;
+            mana -= 1;
         }
-        self.mana += mana
     }
     /// Removes mana.
     pub fn sub_mana(&mut self, cost: usize) {
